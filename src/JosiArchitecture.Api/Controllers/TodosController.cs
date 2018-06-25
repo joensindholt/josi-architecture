@@ -21,8 +21,8 @@ namespace JosiArchitecture.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> Get(GetTodosRequest request)
         {
-            IEnumerable<Todo> results = await _mediator.Send(request);
-            return Ok(results);
+            IEnumerable<Todo> todos = await _mediator.Send(request);
+            return Ok(todos);
         }
 
         // GET api/todos/5

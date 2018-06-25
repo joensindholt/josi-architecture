@@ -6,28 +6,28 @@ namespace JosiArchitecture.Data
 {
     public class TodoRepository : ITodoRepository
     {
-        private readonly DataStore dbContext;
+        private readonly DataStore store;
 
-        public TodoRepository(DataStore dbContext)
+        public TodoRepository(DataStore store)
         {
-            this.dbContext = dbContext;
+            this.store = store;
         }
 
         public async Task AddAsync(Todo todo, CancellationToken cancellationToken)
         {
-            await dbContext.Todos.AddAsync(todo, cancellationToken);
+            await store.Todos.AddAsync(todo, cancellationToken);
         }
 
         public async Task RemoveByIdAsync(long id, CancellationToken cancellationToken)
         {
-            var todo = await dbContext.Todos.FindAsync(id);
+            var todo = await store.Todos.FindAsync(id);
 
             if (todo == null)
             {
                 return;
             }
 
-            dbContext.Todos.Remove(todo);
+            store.Todos.Remove(todo);
         }
     }
 }

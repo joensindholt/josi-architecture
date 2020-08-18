@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using JosiArchitecture.Core.Contacts;
 using JosiArchitecture.Core.Shared;
 using JosiArchitecture.Core.Todos;
 using Microsoft.EntityFrameworkCore;
@@ -14,9 +13,6 @@ namespace JosiArchitecture.Data
            : base(options)
         { }
 
-        public DbSet<Contact> Contacts { get; set; }
-
-        IQueryable<Contact> IQueryDataStore.Contacts => Contacts;
 
         public DbSet<Todo> Todos { get; set; }
 

@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using JosiArchitecture.Core.Contacts;
 using JosiArchitecture.Core.Todos;
 
 namespace JosiArchitecture.Core.Shared
@@ -10,8 +9,6 @@ namespace JosiArchitecture.Core.Shared
     /// </summary>
     public interface IQueryDataStore
     {
-        IQueryable<Contact> Contacts { get; }
-
         IQueryable<Todo> Todos { get; }
     }
 }

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace JosiArchitecture.Api
 {
@@ -23,12 +24,12 @@ namespace JosiArchitecture.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddControllers();
 
             // TODO: Use automatic discovery
 
-            var connection = @"Server=(localdb)\mssqllocaldb;Database=JosiArchitecture;Trusted_Connection=True;";
-            services.AddDbContext<DataStore>(options => options.UseSqlServer(connection));
+            var connection = @"Data Source=data.db;Cache=Shared";
+            services.AddDbContext<DataStore>(options => options.UseSqlite(connection));
 
             services.AddMediatR(GetApiAssembly(), GetCoreAssembly(), GetDataAssembly());
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
@@ -40,14 +41,23 @@ namespace JosiArchitecture.Api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
+            app.UseHttpsRedirection();
+
+            app.UseRouting();
+
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
 
         private Assembly GetApiAssembly() => typeof(Startup).Assembly;

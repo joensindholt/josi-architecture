@@ -7,7 +7,7 @@ using JosiArchitecture.Core.Shared.Cqs;
 
 namespace JosiArchitecture.Core.Todos.Queries
 {
-    public class GetTodosHandler : IQueryHandler<GetTodosRequest, IEnumerable<Todo>>
+    public class GetTodosHandler : IQueryHandler<GetTodosRequest, GetTodosResponse>
     {
         private readonly IQueryDataStore _dataStore;
 
@@ -16,13 +16,37 @@ namespace JosiArchitecture.Core.Todos.Queries
             _dataStore = dataStore;
         }
 
-        public async Task<IEnumerable<Todo>> Handle(GetTodosRequest request, CancellationToken cancellationToken)
+        public async Task<GetTodosResponse> Handle(GetTodosRequest request, CancellationToken cancellationToken)
         {
-            return await Task.FromResult(_dataStore.Todos.ToList());
+            var response = new GetTodosResponse(_dataStore.Todos);
+            return await Task.FromResult(response);
         }
     }
 
-    public class GetTodosRequest : IQuery<IEnumerable<Todo>>
+    public class GetTodosRequest : IQuery<GetTodosResponse>
     {
+    }
+
+    public class GetTodosResponse
+    {
+        public GetTodosResponse(IEnumerable<Todo> todos)
+        {
+            Todos = todos.Select(todo => new TodoResponse(todo)).ToList();
+        }
+
+        public List<TodoResponse> Todos { get; set; }
+
+        public class TodoResponse
+        {
+            public TodoResponse(Todo todo)
+            {
+                Id = todo.Id;
+                Title = todo.Title;
+            }
+
+            public long Id { get; }
+
+            public string Title { get; }
+        }
     }
 }

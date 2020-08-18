@@ -11,8 +11,7 @@ namespace JosiArchitecture.Data.Migrations
                 name: "Contacts",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<long>(nullable: false),
                     Title = table.Column<string>(maxLength: 500, nullable: false)
                 },
                 constraints: table =>
@@ -24,8 +23,7 @@ namespace JosiArchitecture.Data.Migrations
                 name: "Todos",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<long>(nullable: false),
                     Title = table.Column<string>(maxLength: 500, nullable: false)
                 },
                 constraints: table =>

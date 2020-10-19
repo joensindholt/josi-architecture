@@ -22,6 +22,6 @@ namespace JosiArchitecture.Core.Todos.Commands
 
     public class AddTodoCommand : ICommand
     {
-        public string Title { get; }
+        public string Title { get; set; }
     }
 }

@@ -34,7 +34,7 @@ namespace JosiArchitecture.Api.Controllers
 
         // POST api/todos
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]AddTodoCommand request)
+        public async Task<IActionResult> Post([FromBody] AddTodoCommand request)
         {
             await _mediator.Send(request);
             return Ok();
@@ -42,7 +42,7 @@ namespace JosiArchitecture.Api.Controllers
 
         // PUT api/todos/5
         [HttpPut("{id:int}")]
-        public IActionResult Put(int id, [FromBody]string value)
+        public IActionResult Put(int id, [FromBody] string value)
         {
             return NotFound();
         }

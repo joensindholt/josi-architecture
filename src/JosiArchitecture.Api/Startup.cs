@@ -26,6 +26,8 @@ namespace JosiArchitecture.Api
         {
             services.AddControllers();
 
+            services.AddSwaggerGen();
+
             // TODO: Use automatic discovery
 
             var connection = @"Data Source=data.db;Cache=Shared";
@@ -49,6 +51,13 @@ namespace JosiArchitecture.Api
             }
 
             app.UseHttpsRedirection();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.RoutePrefix = string.Empty;
+            });
 
             app.UseRouting();
 

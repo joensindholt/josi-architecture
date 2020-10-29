@@ -1,23 +1,21 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using JosiArchitecture.Core.Shared;
 
 namespace JosiArchitecture.Core.Todos
 {
-    public class Todo
+    public class Todo : Entity
     {
         public Todo(string title)
         {
             Title = title;
         }
 
+        // For EF
         private Todo()
         {
-            // For EF and such
         }
 
-        public long Id { get; private set; }
-
-        [Required]
-        [StringLength(500)]
         public string Title { get; private set; }
+
+        public TodoList TodoList { get; set; }
     }
 }

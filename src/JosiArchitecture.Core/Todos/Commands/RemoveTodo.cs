@@ -1,21 +1,22 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using JosiArchitecture.Core.Shared;
 using JosiArchitecture.Core.Shared.Cqs;
 
 namespace JosiArchitecture.Core.Todos.Commands
 {
     public class RemoveTodoHandler : ICommandHandler<RemoveTodoCommand>
     {
-        private readonly ITodoRepository todoRepository;
+        private readonly ICommandDataStore _store;
 
-        public RemoveTodoHandler(ITodoRepository todoRepository)
+        public RemoveTodoHandler(ICommandDataStore store)
         {
-            this.todoRepository = todoRepository;
+            _store = store;
         }
 
         public async Task Handle(RemoveTodoCommand request, CancellationToken cancellationToken)
         {
-            await todoRepository.RemoveByIdAsync(request.Id, cancellationToken);
+            await _store.RemoveByIdAsync<Todo>(request.Id, cancellationToken);
         }
     }
 

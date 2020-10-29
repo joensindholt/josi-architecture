@@ -1,22 +1,23 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using JosiArchitecture.Core.Shared;
 using JosiArchitecture.Core.Shared.Cqs;
 
 namespace JosiArchitecture.Core.Todos.Commands
 {
     public class AddTodoHandler : ICommandHandler<AddTodoCommand>
     {
-        private readonly ITodoRepository _todoRepository;
+        private readonly ICommandDataStore _store;
 
-        public AddTodoHandler(ITodoRepository todoRepository)
+        public AddTodoHandler(ICommandDataStore store)
         {
-            _todoRepository = todoRepository;
+            _store = store;
         }
 
         public async Task Handle(AddTodoCommand request, CancellationToken cancellationToken)
         {
             var todo = new Todo(request.Title);
-            await _todoRepository.AddAsync(todo, cancellationToken);
+            await _store.AddAsync(todo, cancellationToken);
         }
     }
 

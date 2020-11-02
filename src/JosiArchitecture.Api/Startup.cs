@@ -30,7 +30,6 @@ namespace JosiArchitecture.Api
 
             // TODO: Use automatic discovery
 
-            //var connection = @"Data Source=data.db;Cache=Shared";
             var connection = @"Server=localhost;Database=JosiArchitecture;User Id=sa;Password=letmepass!!42;";
             services.AddDbContext<DataStore>(options => options.UseSqlServer(connection));
 

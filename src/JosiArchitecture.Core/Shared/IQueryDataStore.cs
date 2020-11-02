@@ -10,5 +10,7 @@ namespace JosiArchitecture.Core.Shared
     public interface IQueryDataStore
     {
         IQueryable<Todo> Todos { get; }
+
+        IQueryable<TodoList> TodoLists { get; }
     }
 }

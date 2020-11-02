@@ -6,4 +6,8 @@ namespace JosiArchitecture.Core.Shared.Cqs
         where T : IRequest
     {
     }
+    public interface ICommandHandler<T, T2> : IRequestHandler<T, T2>
+        where T : IRequest<T2>
+    {
+    }
 }

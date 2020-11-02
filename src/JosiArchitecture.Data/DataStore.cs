@@ -15,6 +15,8 @@ namespace JosiArchitecture.Data
 
         public DbSet<TodoList> TodoLists { get; set; }
 
+        IQueryable<TodoList> IQueryDataStore.TodoLists => TodoLists;
+
         public DbSet<Todo> Todos { get; set; }
 
         IQueryable<Todo> IQueryDataStore.Todos => Todos;

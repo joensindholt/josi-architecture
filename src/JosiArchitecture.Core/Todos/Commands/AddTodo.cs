@@ -5,7 +5,7 @@ using JosiArchitecture.Core.Shared.Cqs;
 
 namespace JosiArchitecture.Core.Todos.Commands
 {
-    public class AddTodoHandler : ICommandHandler<AddTodoCommand>
+    public class AddTodoHandler : ICommandHandler<AddTodoCommand, AddTodoResponse>
     {
         private readonly ICommandDataStore _store;
 
@@ -14,15 +14,20 @@ namespace JosiArchitecture.Core.Todos.Commands
             _store = store;
         }
 
-        public async Task Handle(AddTodoCommand request, CancellationToken cancellationToken)
+        public async Task<AddTodoResponse> Handle(AddTodoCommand request, CancellationToken cancellationToken)
         {
             var todo = new Todo(request.Title);
-            await _store.AddAsync(todo, cancellationToken);
+            return await _store.AddAsync(todo, cancellationToken);
         }
     }
 
-    public class AddTodoCommand : ICommand
+    public class AddTodoCommand : ICommand<AddTodoResponse>
     {
         public string Title { get; set; }
+    }
+
+    public class AddTodoResponse
+    {
+
     }
 }

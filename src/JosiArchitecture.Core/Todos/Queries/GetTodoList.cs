@@ -20,8 +20,7 @@ namespace JosiArchitecture.Core.Todos.Queries
         public async Task<GetTodoListResponse> Handle(GetTodoListRequest request, CancellationToken cancellationToken)
         {
             var todoLists = await _dataStore.TodoLists.Where(l => l.Id == request.TodoListId).ToListAsync();
-            var response = new GetTodoListResponse(todoLists);
-            return await Task.FromResult(response);
+            return new GetTodoListResponse(todoLists);
         }
     }
 

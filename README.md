@@ -14,3 +14,9 @@ An example implementation of a web api and frontend using ASP.NET Core 3.1 WebAp
 - Docker setup for dependencies (database, cache, etc.)
 - Blazer Frontend
 - Unit Tests using XUnit
+
+# Todo
+
+- Remove Mediatr. After further thought it does not bring much to the table when alreading having the ASP.NET framework at hand
+- Correlation Id handling
+- Security Context handling

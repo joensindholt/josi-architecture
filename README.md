@@ -22,4 +22,4 @@ An example implementation of a web api and frontend using ASP.NET Core 3.1 WebAp
 - Security Context handling
 - Add acceptance test framework focusing on how to easily handle external resources
 - Add slugs to avoid exposing internal id's. This increases security by not allowing a user to guess other entity id's
-- Background job handling
+- Background work handling

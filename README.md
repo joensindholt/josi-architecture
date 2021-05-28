@@ -20,3 +20,4 @@ An example implementation of a web api and frontend using ASP.NET Core 3.1 WebAp
 - Remove Mediatr. After further thought it does not bring much to the table when alreading having the ASP.NET framework at hand
 - Correlation Id handling
 - Security Context handling
+- Add acceptance test framework focusing on how to easily handle external resources

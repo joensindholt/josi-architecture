@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
+
 namespace JosiArchitecture.Api
 {
     public class Startup
@@ -30,8 +31,7 @@ namespace JosiArchitecture.Api
 
             // TODO: Use automatic discovery
 
-            var connection = @"Server=localhost;Database=JosiArchitecture;User Id=sa;Password=letmepass!!42;";
-            services.AddDbContext<DataStore>(options => options.UseSqlServer(connection));
+            services.AddDbContext<DataStore>(options => options.UseInMemoryDatabase("JosiArchitecture"));
 
             services.AddMediatR(GetApiAssembly(), GetCoreAssembly(), GetDataAssembly());
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));

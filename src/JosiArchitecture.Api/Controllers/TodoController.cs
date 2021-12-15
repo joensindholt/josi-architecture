@@ -1,8 +1,9 @@
-﻿using System.Threading.Tasks;
-using JosiArchitecture.Core.Todos.Commands;
+﻿using JosiArchitecture.Core.Todos.Commands;
 using JosiArchitecture.Core.Todos.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace JosiArchitecture.Api.Controllers
 {
@@ -17,19 +18,28 @@ namespace JosiArchitecture.Api.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(GetTodosResponse), 200)]
-        public async Task<IActionResult> Get(GetTodosRequest request)
+        [ProducesResponseType(typeof(GetTodosResponse), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> GetTodos(GetTodosRequest request)
         {
             var response = await _mediator.Send(request);
             return Ok(response);
         }
 
         [HttpPost]
-        [ProducesResponseType(200)]
-        public async Task<IActionResult> Post(AddTodoCommand request)
+        [ProducesResponseType(typeof(GetTodosResponse), (int)HttpStatusCode.Created)]
+        public async Task<IActionResult> PostTodo(AddTodoCommand request)
         {
-            await _mediator.Send(request);
-            return Ok();
+            var response = await _mediator.Send(request);
+            return Created(Url.Action(nameof(GetTodo), new { id = response.Id }), response);
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        [ProducesResponseType(typeof(GetTodosResponse), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> GetTodo(long id)
+        {
+            var response = await _mediator.Send(new GetTodoRequest(id));
+            return response != null ? Ok(response) : NotFound();
         }
     }
 }

@@ -17,7 +17,8 @@ namespace JosiArchitecture.Core.Todos.Commands
         public async Task<AddTodoResponse> Handle(AddTodoCommand request, CancellationToken cancellationToken)
         {
             var todo = new Todo(request.Title);
-            return await _store.AddAsync(todo, cancellationToken);
+            await _store.AddAsync(todo, cancellationToken);
+            return new AddTodoResponse(todo.Id);
         }
     }
 
@@ -28,6 +29,11 @@ namespace JosiArchitecture.Core.Todos.Commands
 
     public class AddTodoResponse
     {
+        public AddTodoResponse(long id)
+        {
+            Id = id;
+        }
 
+        public long Id { get; }
     }
 }

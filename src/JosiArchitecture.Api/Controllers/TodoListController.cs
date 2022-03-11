@@ -1,8 +1,9 @@
-﻿using System.Threading.Tasks;
-using JosiArchitecture.Core.Todos.Commands;
-using JosiArchitecture.Core.Todos.Queries;
+﻿using JosiArchitecture.Core.Todos.Commands.AddTodoList;
+using JosiArchitecture.Core.Todos.Queries.GetTodoList;
+using JosiArchitecture.Core.Todos.Queries.GetTodoLists;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace JosiArchitecture.Api.Controllers
 {
@@ -18,7 +19,7 @@ namespace JosiArchitecture.Api.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(GetTodoListsResponse), 200)]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetTodoLists()
         {
             var response = await _mediator.Send(new GetTodoListsRequest());
             return Ok(response);
@@ -26,14 +27,14 @@ namespace JosiArchitecture.Api.Controllers
 
         [HttpGet("{id:int}")]
         [ProducesResponseType(typeof(GetTodoListResponse), 200)]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> GetTodo(int id)
         {
             var response = await _mediator.Send(new GetTodoListRequest(id));
             return Ok(response);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(AddTodoListCommand request)
+        public async Task<IActionResult> AddTodo(AddTodoListCommand request)
         {
             await _mediator.Send(request);
             return Ok();

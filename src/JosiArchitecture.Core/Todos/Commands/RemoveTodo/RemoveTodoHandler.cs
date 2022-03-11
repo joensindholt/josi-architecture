@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using JosiArchitecture.Core.Shared;
 using JosiArchitecture.Core.Shared.Cqs;
 
-namespace JosiArchitecture.Core.Todos.Commands
+namespace JosiArchitecture.Core.Todos.Commands.RemoveTodo
 {
     public class RemoveTodoHandler : ICommandHandler<RemoveTodoCommand>
     {
@@ -18,10 +18,5 @@ namespace JosiArchitecture.Core.Todos.Commands
         {
             await _store.RemoveByIdAsync<Todo>(request.Id, cancellationToken);
         }
-    }
-
-    public class RemoveTodoCommand : ICommand
-    {
-        public long Id { get; set; }
     }
 }

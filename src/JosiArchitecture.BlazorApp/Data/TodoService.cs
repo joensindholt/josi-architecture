@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using JosiArchitecture.Core.Todos.Queries.GetTodos;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using JosiArchitecture.Core.Todos.Queries;
-using static JosiArchitecture.Core.Todos.Queries.GetTodosResponse;
 
 namespace JosiArchitecture.BlazorApp.Data
 {
@@ -16,11 +14,11 @@ namespace JosiArchitecture.BlazorApp.Data
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<IEnumerable<TodoResponse>> GetTodosAsync()
+        public async Task<GetTodosResponse> GetTodosAsync()
         {
             var client = _httpClientFactory.CreateClient();
             var response = await client.GetFromJsonAsync<GetTodosResponse>("http://xyz/todos");
-            return response.Todos;
+            return response;
         }
     }
 }

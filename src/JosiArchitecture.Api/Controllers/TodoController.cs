@@ -1,5 +1,6 @@
-﻿using JosiArchitecture.Core.Todos.Commands;
-using JosiArchitecture.Core.Todos.Queries;
+﻿using JosiArchitecture.Core.Todos.Commands.AddTodo;
+using JosiArchitecture.Core.Todos.Queries.GetTodo;
+using JosiArchitecture.Core.Todos.Queries.GetTodos;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -26,8 +27,8 @@ namespace JosiArchitecture.Api.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(GetTodosResponse), (int)HttpStatusCode.Created)]
-        public async Task<IActionResult> PostTodo(AddTodoCommand request)
+        [ProducesResponseType(typeof(AddTodoCommand), (int)HttpStatusCode.Created)]
+        public async Task<IActionResult> AddTodo(AddTodoCommand request)
         {
             var response = await _mediator.Send(request);
             return Created(Url.Action(nameof(GetTodo), new { id = response.Id }), response);
@@ -35,7 +36,7 @@ namespace JosiArchitecture.Api.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        [ProducesResponseType(typeof(GetTodosResponse), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(GetTodoResponse), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetTodo(long id)
         {
             var response = await _mediator.Send(new GetTodoRequest(id));

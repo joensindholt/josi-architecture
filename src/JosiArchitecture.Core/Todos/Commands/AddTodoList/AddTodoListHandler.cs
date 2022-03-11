@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using JosiArchitecture.Core.Shared;
 using JosiArchitecture.Core.Shared.Cqs;
 
-namespace JosiArchitecture.Core.Todos.Commands
+namespace JosiArchitecture.Core.Todos.Commands.AddTodoList
 {
     public class AddTodoListHandler : ICommandHandler<AddTodoListCommand>
     {
@@ -19,10 +19,5 @@ namespace JosiArchitecture.Core.Todos.Commands
             var todoList = new TodoList(request.Title);
             await _store.AddAsync(todoList, cancellationToken);
         }
-    }
-
-    public class AddTodoListCommand : ICommand
-    {
-        public string Title { get; set; }
     }
 }

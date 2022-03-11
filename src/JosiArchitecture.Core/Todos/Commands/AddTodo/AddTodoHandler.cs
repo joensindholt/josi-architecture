@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using JosiArchitecture.Core.Shared;
 using JosiArchitecture.Core.Shared.Cqs;
 
-namespace JosiArchitecture.Core.Todos.Commands
+namespace JosiArchitecture.Core.Todos.Commands.AddTodo
 {
     public class AddTodoHandler : ICommandHandler<AddTodoCommand, AddTodoResponse>
     {
@@ -20,20 +20,5 @@ namespace JosiArchitecture.Core.Todos.Commands
             await _store.AddAsync(todo, cancellationToken);
             return new AddTodoResponse(todo.Id);
         }
-    }
-
-    public class AddTodoCommand : ICommand<AddTodoResponse>
-    {
-        public string Title { get; set; }
-    }
-
-    public class AddTodoResponse
-    {
-        public AddTodoResponse(long id)
-        {
-            Id = id;
-        }
-
-        public long Id { get; }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace JosiArchitecture.Core.Todos.Queries
+namespace JosiArchitecture.Core.Todos.Queries.GetTodo
 {
     public class GetTodoHandler : IQueryHandler<GetTodoRequest, GetTodoResponse>
     {
@@ -27,39 +27,6 @@ namespace JosiArchitecture.Core.Todos.Queries
             var response = new GetTodoResponse(todo);
 
             return await Task.FromResult(response);
-        }
-    }
-
-    public class GetTodoRequest : IQuery<GetTodoResponse>
-    {
-        public GetTodoRequest(long id)
-        {
-            Id = id;
-        }
-
-        public long Id { get; }
-    }
-
-    public class GetTodoResponse
-    {
-        public GetTodoResponse(Todo todo)
-        {
-            Todo = new TodoResponse(todo);
-        }
-
-        public TodoResponse Todo { get; }
-
-        public class TodoResponse
-        {
-            public TodoResponse(Todo todo)
-            {
-                Id = todo.Id;
-                Title = todo.Title;
-            }
-
-            public long Id { get; }
-
-            public string Title { get; }
         }
     }
 }

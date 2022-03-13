@@ -23,7 +23,7 @@ namespace JosiArchitecture.BlazorApp
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
-            services.AddSingleton<TodoService>();
+            services.AddSingleton<TodoListService>();
             services.AddHttpClient();
         }
 

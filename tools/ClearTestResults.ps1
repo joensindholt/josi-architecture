@@ -1,0 +1,1 @@
+rmdir tests\JosiArchitecture.Tests\TestResults\ -Force -Recurse

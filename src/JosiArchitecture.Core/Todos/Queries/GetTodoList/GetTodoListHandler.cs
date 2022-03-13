@@ -1,9 +1,9 @@
-﻿using System.Linq;
+﻿using JosiArchitecture.Core.Shared.Cqs;
+using JosiArchitecture.Core.Shared.Persistence;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using JosiArchitecture.Core.Shared;
-using JosiArchitecture.Core.Shared.Cqs;
-using Microsoft.EntityFrameworkCore;
 
 namespace JosiArchitecture.Core.Todos.Queries.GetTodoList
 {

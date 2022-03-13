@@ -1,7 +1,7 @@
-﻿using System.Threading;
+﻿using JosiArchitecture.Core.Shared.Cqs;
+using JosiArchitecture.Core.Shared.Persistence;
+using System.Threading;
 using System.Threading.Tasks;
-using JosiArchitecture.Core.Shared;
-using JosiArchitecture.Core.Shared.Cqs;
 
 namespace JosiArchitecture.Core.Todos.Commands.AddTodoList
 {

@@ -4,6 +4,8 @@ namespace JosiArchitecture.Core.Todos.Commands.RemoveTodo
 {
     public class RemoveTodoCommand : ICommand
     {
+        public long TodoListId { get; set; }
+
         public long Id { get; set; }
     }
 }

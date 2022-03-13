@@ -1,9 +1,9 @@
-﻿using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using JosiArchitecture.Core.Shared;
+﻿using JosiArchitecture.Core.Shared.Persistence;
 using JosiArchitecture.Core.Todos;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace JosiArchitecture.Data
 {
@@ -16,10 +16,6 @@ namespace JosiArchitecture.Data
         public DbSet<TodoList> TodoLists { get; set; }
 
         IQueryable<TodoList> IQueryDataStore.TodoLists => TodoLists;
-
-        public DbSet<Todo> Todos { get; set; }
-
-        IQueryable<Todo> IQueryDataStore.Todos => Todos;
 
         public async Task CompleteAsync(CancellationToken cancellationToken)
         {

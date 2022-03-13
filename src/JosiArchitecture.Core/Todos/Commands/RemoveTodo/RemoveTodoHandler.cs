@@ -1,22 +1,27 @@
-﻿using System.Threading;
+﻿using JosiArchitecture.Core.Shared.Cqs;
+using JosiArchitecture.Core.Shared.Persistence;
+using Microsoft.EntityFrameworkCore;
+using System.Threading;
 using System.Threading.Tasks;
-using JosiArchitecture.Core.Shared;
-using JosiArchitecture.Core.Shared.Cqs;
 
 namespace JosiArchitecture.Core.Todos.Commands.RemoveTodo
 {
     public class RemoveTodoHandler : ICommandHandler<RemoveTodoCommand>
     {
-        private readonly ICommandDataStore _store;
+        private readonly IQueryDataStore _store;
 
-        public RemoveTodoHandler(ICommandDataStore store)
+        public RemoveTodoHandler(IQueryDataStore store)
         {
             _store = store;
         }
 
         public async Task Handle(RemoveTodoCommand request, CancellationToken cancellationToken)
         {
-            await _store.RemoveByIdAsync<Todo>(request.Id, cancellationToken);
+            var todoList = await _store.TodoLists
+                .Include(l => l.Todos)
+                .SingleAsync(l => l.Id == request.TodoListId);
+
+            todoList.RemoveTodo(request.Id);
         }
     }
 }

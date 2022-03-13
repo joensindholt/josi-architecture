@@ -1,5 +1,5 @@
-﻿using JosiArchitecture.Core.Shared;
-using JosiArchitecture.Core.Shared.Cqs;
+﻿using JosiArchitecture.Core.Shared.Cqs;
+using JosiArchitecture.Core.Shared.Persistence;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,7 +17,14 @@ namespace JosiArchitecture.Core.Todos.Queries.GetTodo
 
         public async Task<GetTodoResponse> Handle(GetTodoRequest request, CancellationToken cancellationToken)
         {
-            var todo = _dataStore.Todos.FirstOrDefault(t => t.Id == request.Id);
+            var list = _dataStore.TodoLists.FirstOrDefault(l => l.Id == request.TodoListId);
+
+            if (list == null)
+            {
+                return null;
+            }
+
+            var todo = list.Todos.FirstOrDefault(t => t.Id == request.Id);
 
             if (todo == null)
             {

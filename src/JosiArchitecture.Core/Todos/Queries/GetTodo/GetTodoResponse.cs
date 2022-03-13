@@ -13,7 +13,6 @@
         {
             public TodoResponse(Todo todo)
             {
-                Id = todo.Id;
                 Title = todo.Title;
             }
 

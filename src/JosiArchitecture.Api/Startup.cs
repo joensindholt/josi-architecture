@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using JosiArchitecture.Core.Shared;
 using JosiArchitecture.Core.Shared.Cqs;
+using JosiArchitecture.Core.Shared.Persistence;
 using JosiArchitecture.Data;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -26,18 +27,14 @@ namespace JosiArchitecture.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
             services.AddSwaggerGen();
-
-            // TODO: Use automatic discovery
 
             services.AddDbContext<DataStore>(options => options.UseInMemoryDatabase("JosiArchitecture"));
 
-            services.AddMediatR(GetApiAssembly(), GetCoreAssembly(), GetDataAssembly());
-            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
-            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(UnitOfWorkBehavior<,>));
+            services.AddCqs();
 
             services.AddScoped<IQueryDataStore, DataStore>();
+            services.AddScoped<ICommandDataStore, DataStore>();
             services.AddScoped<DataStore, DataStore>();
             services.AddScoped<IUnitOfWork, DataStore>();
         }
@@ -69,10 +66,6 @@ namespace JosiArchitecture.Api
             });
         }
 
-        private Assembly GetApiAssembly() => typeof(Startup).Assembly;
-
-        private Assembly GetCoreAssembly() => typeof(IQueryDataStore).Assembly;
-
-        private Assembly GetDataAssembly() => typeof(DataStore).Assembly;
+        
     }
 }

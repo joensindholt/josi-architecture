@@ -1,8 +1,8 @@
-﻿using JosiArchitecture.Core.Shared;
+﻿using JosiArchitecture.Core.Shared.Model;
 
 namespace JosiArchitecture.Core.Todos
 {
-    public class Todo : Entity
+    public class Todo : IEntity
     {
         public Todo(string title)
         {
@@ -12,7 +12,10 @@ namespace JosiArchitecture.Core.Todos
         // For EF
         private Todo()
         {
+
         }
+
+        public long Id { get; set; }
 
         public string Title { get; private set; }
 

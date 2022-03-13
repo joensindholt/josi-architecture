@@ -1,23 +1,23 @@
-﻿using JosiArchitecture.Core.Todos.Queries.GetTodos;
+﻿using JosiArchitecture.Core.Todos.Queries.GetTodoList;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
 namespace JosiArchitecture.BlazorApp.Data
 {
-    public class TodoService
+    public class TodoListService
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public TodoService(IHttpClientFactory httpClientFactory)
+        public TodoListService(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<GetTodosResponse> GetTodosAsync()
+        public async Task<GetTodoListResponse> GetTodoListAsync()
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.GetFromJsonAsync<GetTodosResponse>("http://xyz/todos");
+            var response = await client.GetFromJsonAsync<GetTodoListResponse>("http://xyz/todolist");
             return response;
         }
     }

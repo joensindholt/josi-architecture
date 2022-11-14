@@ -1,11 +1,11 @@
-﻿using JosiArchitecture.Core.Shared.Cqs;
-using JosiArchitecture.Core.Shared.Persistence;
+﻿using JosiArchitecture.Core.Shared.Persistence;
+using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace JosiArchitecture.Core.Todos.Queries.GetTodoLists
 {
-    public class GetTodoListsHandler : IQueryHandler<GetTodoListsRequest, GetTodoListsResponse>
+    public class GetTodoListsHandler : IRequestHandler<GetTodoListsRequest, GetTodoListsResponse>
     {
         private readonly IQueryDataStore _dataStore;
 

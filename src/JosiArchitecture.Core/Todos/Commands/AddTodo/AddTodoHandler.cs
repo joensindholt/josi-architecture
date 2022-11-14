@@ -1,12 +1,12 @@
-﻿using JosiArchitecture.Core.Shared.Cqs;
-using JosiArchitecture.Core.Shared.Persistence;
+﻿using JosiArchitecture.Core.Shared.Persistence;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace JosiArchitecture.Core.Todos.Commands.AddTodo
 {
-    public class AddTodoHandler : ICommandHandler<AddTodoCommand, AddTodoResponse>
+    public class AddTodoHandler : IRequestHandler<AddTodoCommand, AddTodoResponse>
     {
         private readonly IQueryDataStore _store;
 

@@ -1,11 +1,11 @@
-﻿using JosiArchitecture.Core.Shared.Cqs;
-using JosiArchitecture.Core.Shared.Persistence;
+﻿using JosiArchitecture.Core.Shared.Persistence;
+using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace JosiArchitecture.Core.Todos.Commands.AddTodoList
 {
-    public class AddTodoListHandler : ICommandHandler<AddTodoListCommand>
+    public class AddTodoListHandler : AsyncRequestHandler<AddTodoListCommand>
     {
         private readonly ICommandDataStore _store;
 
@@ -14,7 +14,7 @@ namespace JosiArchitecture.Core.Todos.Commands.AddTodoList
             _store = store;
         }
 
-        public async Task Handle(AddTodoListCommand request, CancellationToken cancellationToken)
+        protected override async Task Handle(AddTodoListCommand request, CancellationToken cancellationToken)
         {
             var todoList = new TodoList(request.Title);
             await _store.AddAsync(todoList, cancellationToken);

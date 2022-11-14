@@ -1,8 +1,8 @@
-﻿using JosiArchitecture.Core.Shared.Cqs;
+﻿using MediatR;
 
 namespace JosiArchitecture.Core.Todos.Commands.AddTodoList
 {
-    public class AddTodoListCommand : ICommand
+    public class AddTodoListCommand : IRequest
     {
         public string Title { get; set; }
     }

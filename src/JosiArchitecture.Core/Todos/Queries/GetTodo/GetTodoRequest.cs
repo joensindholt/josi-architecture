@@ -1,8 +1,8 @@
-﻿using JosiArchitecture.Core.Shared.Cqs;
+﻿using MediatR;
 
 namespace JosiArchitecture.Core.Todos.Queries.GetTodo
 {
-    public class GetTodoRequest : IQuery<GetTodoResponse>
+    public class GetTodoRequest : IRequest<GetTodoResponse>
     {
         public GetTodoRequest(long todoListId, long id)
         {

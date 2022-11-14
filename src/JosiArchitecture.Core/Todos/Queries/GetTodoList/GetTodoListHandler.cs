@@ -1,5 +1,5 @@
-﻿using JosiArchitecture.Core.Shared.Cqs;
-using JosiArchitecture.Core.Shared.Persistence;
+﻿using JosiArchitecture.Core.Shared.Persistence;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace JosiArchitecture.Core.Todos.Queries.GetTodoList
 {
-    public class GetTodoListHandler : IQueryHandler<GetTodoListRequest, GetTodoListResponse>
+    public class GetTodoListHandler : IRequestHandler<GetTodoListRequest, GetTodoListResponse>
     {
         private readonly IQueryDataStore _dataStore;
 

@@ -1,7 +1,7 @@
-using System;
-using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using System;
+using System.Net;
 
 namespace JosiArchitecture.Api.Shared
 {
@@ -9,7 +9,8 @@ namespace JosiArchitecture.Api.Shared
     {
         public int Order { get; } = int.MaxValue - 10;
 
-        public void OnActionExecuting(ActionExecutingContext context) { }
+        public void OnActionExecuting(ActionExecutingContext context)
+        { }
 
         public void OnActionExecuted(ActionExecutedContext context)
         {

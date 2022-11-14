@@ -1,7 +1,6 @@
 ﻿using FluentAssertions;
 using FluentValidation;
 using JosiArchitecture.Core.Todos.Commands.AddTodo;
-using Microsoft.Extensions.Logging;
 using Moq;
 using System;
 using System.Threading;

@@ -12,7 +12,6 @@ namespace JosiArchitecture.Core.Todos
         // For EF
         private Todo()
         {
-
         }
 
         public long Id { get; set; }

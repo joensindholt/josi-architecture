@@ -1,9 +1,6 @@
-﻿using JosiArchitecture.Core.Shared.Cqs;
-using JosiArchitecture.Tests.Shared;
+﻿using JosiArchitecture.Tests.Shared;
 using Microsoft.Extensions.Logging;
-using Moq;
 using System;
-using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 

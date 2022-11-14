@@ -13,6 +13,7 @@ namespace JosiArchitecture.Api.Shared
             }
         }
 
-        public void OnActionExecuted(ActionExecutedContext context) { }
+        public void OnActionExecuted(ActionExecutedContext context)
+        { }
     }
 }

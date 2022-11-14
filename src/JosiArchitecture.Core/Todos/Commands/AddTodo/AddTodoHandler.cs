@@ -17,13 +17,15 @@ namespace JosiArchitecture.Core.Todos.Commands.AddTodo
 
         public async Task<AddTodoResponse> Handle(AddTodoCommand request, CancellationToken cancellationToken)
         {
+            var todo = new Todo(request.Title);
+
             var todoList = await _store.TodoLists
                 .Include(l => l.Todos)
                 .SingleAsync(l => l.Id == request.TodoListId, cancellationToken);
 
-            todoList.AddTodo(new Todo(request.Title));
+            todoList.AddTodo(todo);
 
-            return new AddTodoResponse();
+            return new AddTodoResponse(todo.Id);
         }
     }
 }

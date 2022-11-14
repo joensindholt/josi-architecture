@@ -1,5 +1,5 @@
-﻿using System.Linq;
-using JosiArchitecture.Core.Todos;
+﻿using JosiArchitecture.Core.Todos;
+using System.Linq;
 
 namespace JosiArchitecture.Core.Shared.Persistence
 {

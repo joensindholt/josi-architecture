@@ -1,4 +1,4 @@
-﻿using JosiArchitecture.Core.Shared;
+﻿using JosiArchitecture.Core.Shared.Persistence;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace JosiArchitecture.Data

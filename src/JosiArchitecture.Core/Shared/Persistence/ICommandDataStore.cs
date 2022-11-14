@@ -9,8 +9,8 @@ namespace JosiArchitecture.Core.Shared.Persistence
     /// </summary>
     public interface ICommandDataStore
     {
-        Task<T> AddAsync<T>(T entity, CancellationToken cancellationToken = default) where T : IAggregateRoot;
+        Task<T> AddAsync<T>(T entity, CancellationToken cancellationToken = default) where T : class, IAggregateRoot;
 
-        Task RemoveByIdAsync<T>(long id, CancellationToken cancellationToken) where T : IAggregateRoot;
+        Task RemoveByIdAsync<T>(long id, CancellationToken cancellationToken) where T : class, IAggregateRoot;
     }
 }

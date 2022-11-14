@@ -22,7 +22,7 @@ namespace JosiArchitecture.Data
             await SaveChangesAsync(cancellationToken);
         }
 
-        async Task ICommandDataStore.RemoveByIdAsync<T>(long id, CancellationToken cancellationToken)
+        async Task ICommandDataStore.RemoveByIdAsync<T>(long id, CancellationToken cancellationToken) where T : class
         {
             var set = Set<T>();
 

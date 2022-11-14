@@ -1,7 +1,7 @@
-﻿using System.Reflection;
-using JosiArchitecture.Core.Shared.Cqs;
+﻿using JosiArchitecture.Core.Shared.Behaviors;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace JosiArchitecture.Core
 {
@@ -13,7 +13,5 @@ namespace JosiArchitecture.Core
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(UnitOfWorkBehavior<,>));
         }
-
-
     }
 }

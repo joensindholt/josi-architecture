@@ -1,7 +1,6 @@
-﻿using System.Reflection;
-using JosiArchitecture.Api.Shared;
+﻿using JosiArchitecture.Api.Shared;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json.Serialization;
+using System.Reflection;
 
 namespace JosiArchitecture.Api
 {
@@ -14,10 +13,6 @@ namespace JosiArchitecture.Api
                 {
                     options.Filters.Add(new ModelstateValidationFilter());
                     options.Filters.Add(new ExceptionFilter());
-                })
-                .AddNewtonsoftJson(options =>
-                {
-                    options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                 });
 
             services.AddSwaggerGen();

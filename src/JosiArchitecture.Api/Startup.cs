@@ -1,16 +1,12 @@
-﻿using System.Reflection;
-using JosiArchitecture.Core.Shared;
-using JosiArchitecture.Core.Shared.Cqs;
+﻿using JosiArchitecture.Core.Shared;
 using JosiArchitecture.Core.Shared.Persistence;
 using JosiArchitecture.Data;
-using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
 
 namespace JosiArchitecture.Api
 {
@@ -65,7 +61,5 @@ namespace JosiArchitecture.Api
                 endpoints.MapControllers();
             });
         }
-
-        
     }
 }

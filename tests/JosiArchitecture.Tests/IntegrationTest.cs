@@ -1,15 +1,15 @@
-﻿using System.Linq;
-using System.Net.Http;
-using System.Reflection;
-using System.Threading;
-using System.Threading.Tasks;
-using JosiArchitecture.Api;
-using JosiArchitecture.Core.Shared;
+﻿using JosiArchitecture.Api;
+using JosiArchitecture.Core.Shared.Persistence;
 using JosiArchitecture.Data;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using System.Linq;
+using System.Net.Http;
+using System.Reflection;
+using System.Threading;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace JosiArchitecture.Tests

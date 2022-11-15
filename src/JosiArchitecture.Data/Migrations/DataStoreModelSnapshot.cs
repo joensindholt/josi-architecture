@@ -3,7 +3,10 @@ using System;
 using JosiArchitecture.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+
+#nullable disable
 
 namespace JosiArchitecture.Data.Migrations
 {
@@ -14,39 +17,46 @@ namespace JosiArchitecture.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.7");
+                .HasAnnotation("ProductVersion", "7.0.0")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("JosiArchitecture.Core.Todos.Todo", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Title")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("TodoListId")
-                        .HasColumnType("INTEGER");
+                    b.Property<int?>("TodoListId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("TodoListId");
 
-                    b.ToTable("Todos");
+                    b.ToTable("Todo", (string)null);
                 });
 
             modelBuilder.Entity("JosiArchitecture.Core.Todos.TodoList", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Title")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("TodoLists");
+                    b.ToTable("TodoList", (string)null);
                 });
 
             modelBuilder.Entity("JosiArchitecture.Core.Todos.Todo", b =>
@@ -54,6 +64,13 @@ namespace JosiArchitecture.Data.Migrations
                     b.HasOne("JosiArchitecture.Core.Todos.TodoList", "TodoList")
                         .WithMany("Todos")
                         .HasForeignKey("TodoListId");
+
+                    b.Navigation("TodoList");
+                });
+
+            modelBuilder.Entity("JosiArchitecture.Core.Todos.TodoList", b =>
+                {
+                    b.Navigation("Todos");
                 });
 #pragma warning restore 612, 618
         }

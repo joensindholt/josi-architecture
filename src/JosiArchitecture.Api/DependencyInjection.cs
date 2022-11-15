@@ -1,5 +1,4 @@
-﻿using JosiArchitecture.Api.Shared;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
 namespace JosiArchitecture.Api
@@ -8,14 +7,10 @@ namespace JosiArchitecture.Api
     {
         public static void AddApiServices(this IServiceCollection services, params Assembly[] assemblies)
         {
-            services
-                .AddControllers(options =>
-                {
-                    options.Filters.Add(new ModelstateValidationFilter());
-                    options.Filters.Add(new ExceptionFilter());
-                });
-
+            services.AddControllers();
             services.AddSwaggerGen();
+            services.AddLogging();
+            services.AddHttpContextAccessor();
         }
     }
 }

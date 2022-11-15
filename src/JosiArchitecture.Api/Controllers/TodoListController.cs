@@ -2,19 +2,22 @@
 using JosiArchitecture.Core.Todos.Queries.GetTodoList;
 using JosiArchitecture.Core.Todos.Queries.GetTodoLists;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace JosiArchitecture.Api.Controllers
 {
-    [Route("api/todolists")]
+    [Route("todolists")]
     public class TodoListController : Controller
     {
         private readonly IMediator _mediator;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public TodoListController(IMediator mediator)
+        public TodoListController(IMediator mediator, IHttpContextAccessor httpContextAccessor)
         {
             _mediator = mediator;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         [HttpGet]
@@ -27,17 +30,18 @@ namespace JosiArchitecture.Api.Controllers
 
         [HttpGet("{id:int}")]
         [ProducesResponseType(typeof(GetTodoListResponse), 200)]
-        public async Task<IActionResult> GetTodo(int id)
+        public async Task<IActionResult> GetTodoList(int id)
         {
             var response = await _mediator.Send(new GetTodoListRequest(id));
-            return Ok(response);
+
+            return response != null ? Ok(response) : NotFound();
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddTodo(AddTodoListCommand request)
+        public async Task<IActionResult> AddTodoList([FromBody] AddTodoListCommand request)
         {
-            await _mediator.Send(request);
-            return Ok();
+            var id = await _mediator.Send(request);
+            return Created(Url.Action(nameof(GetTodoList), new { id }), new { });
         }
     }
 }

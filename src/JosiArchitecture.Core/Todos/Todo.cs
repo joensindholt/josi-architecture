@@ -14,7 +14,7 @@ namespace JosiArchitecture.Core.Todos
         {
         }
 
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         public string Title { get; private set; }
 

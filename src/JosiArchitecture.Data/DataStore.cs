@@ -1,45 +1,28 @@
 ﻿using JosiArchitecture.Core.Shared.Persistence;
 using JosiArchitecture.Core.Todos;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace JosiArchitecture.Data
 {
-    public class DataStore : DbContext, IQueryDataStore, ICommandDataStore, IUnitOfWork
+    public class DataStore : DbContext, IApplicationDbContext
     {
-        public DataStore(DbContextOptions<DataStore> options)
-           : base(options)
-        { }
+        public DataStore(DbContextOptions<DataStore> options) : base(options)
+        {
+        }
 
         public DbSet<TodoList> TodoLists { get; set; }
 
-        IQueryable<TodoList> IQueryDataStore.TodoLists => TodoLists;
-
-        public async Task CompleteAsync(CancellationToken cancellationToken)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            await SaveChangesAsync(cancellationToken);
+            UseSingularTableNames(modelBuilder);
         }
 
-        async Task ICommandDataStore.RemoveByIdAsync<T>(long id, CancellationToken cancellationToken) where T : class
+        private static void UseSingularTableNames(ModelBuilder modelBuilder)
         {
-            var set = Set<T>();
-
-            var entity = await set.FindAsync(id, cancellationToken);
-
-            if (entity == null)
+            foreach (var entityType in modelBuilder.Model.GetEntityTypes())
             {
-                return;
+                modelBuilder.Entity(entityType.ClrType).ToTable(entityType.ClrType.Name);
             }
-
-            set.Remove(entity);
-        }
-
-        async Task<T> ICommandDataStore.AddAsync<T>(T entity, CancellationToken cancellationToken)
-        {
-            var result = await base.AddAsync(entity, cancellationToken);
-            return result.Entity;
         }
     }
 }

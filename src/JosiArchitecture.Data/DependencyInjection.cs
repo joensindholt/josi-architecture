@@ -1,4 +1,5 @@
 ﻿using JosiArchitecture.Core.Shared.Persistence;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace JosiArchitecture.Data
@@ -7,10 +8,10 @@ namespace JosiArchitecture.Data
     {
         public static void AddDataServices(this IServiceCollection services)
         {
-            services.AddScoped<IQueryDataStore, DataStore>();
-            services.AddScoped<ICommandDataStore, DataStore>();
-            services.AddScoped<DataStore, DataStore>();
-            services.AddScoped<IUnitOfWork, DataStore>();
+            services.AddDbContext<DataStore>(options =>
+                options.UseSqlServer("Server=localhost;Database=JosiArchitecture;User Id=sa;Password=letmepass!!42;TrustServerCertificate=True"));
+
+            services.AddScoped<IApplicationDbContext>(s => s.GetRequiredService<DataStore>());
         }
     }
 }

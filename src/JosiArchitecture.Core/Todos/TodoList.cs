@@ -6,16 +6,18 @@ namespace JosiArchitecture.Core.Todos
 {
     public class TodoList : AggregateRoot
     {
+        public TodoList(string title) : this()
+        {
+            Title = title;
+        }
+
         // For EF
         private TodoList()
         {
             Todos = new List<Todo>();
         }
 
-        public TodoList(string title) : this()
-        {
-            Title = title;
-        }
+        public int Id { get; private set; }
 
         public string Title { get; private set; }
 

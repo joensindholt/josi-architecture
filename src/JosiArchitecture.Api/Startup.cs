@@ -1,9 +1,8 @@
-﻿using JosiArchitecture.Core.Shared;
-using JosiArchitecture.Core.Shared.Persistence;
+﻿using JosiArchitecture.Api.Shared.ErrorHandling;
+using JosiArchitecture.Core;
 using JosiArchitecture.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -22,17 +21,14 @@ namespace JosiArchitecture.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            services.AddSwaggerGen();
+            // Application core services
+            services.AddCoreServices();
 
-            services.AddDbContext<DataStore>(options => options.UseInMemoryDatabase("JosiArchitecture"));
+            // Application data services
+            services.AddDataServices();
 
-            services.AddCqs();
-
-            services.AddScoped<IQueryDataStore, DataStore>();
-            services.AddScoped<ICommandDataStore, DataStore>();
-            services.AddScoped<DataStore, DataStore>();
-            services.AddScoped<IUnitOfWork, DataStore>();
+            // Api services
+            services.AddApiServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +51,8 @@ namespace JosiArchitecture.Api
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseApplicationErrorHandling();
 
             app.UseEndpoints(endpoints =>
             {

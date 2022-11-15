@@ -1,23 +1,24 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace JosiArchitecture.Core.Todos.Queries.GetTodoList
+﻿namespace JosiArchitecture.Core.Todos.Queries.GetTodoList
 {
     public class GetTodoListResponse
     {
-        public GetTodoListResponse(IEnumerable<TodoList> todoLists)
+        public GetTodoListResponse(long id, string title, List<GetTodoListResponseItem> todos)
         {
-            TodoLists = todoLists.Select(todoList => new GetTodoListResponseItem(todoList)).ToList();
+            Id = id;
+            Title = title;
+            Todos = todos;
         }
 
-        public List<GetTodoListResponseItem> TodoLists { get; set; }
+        public long Id { get; }
+        public string Title { get; }
+        public List<GetTodoListResponseItem> Todos { get; }
 
         public class GetTodoListResponseItem
         {
-            public GetTodoListResponseItem(TodoList todoList)
+            public GetTodoListResponseItem(long id, string title)
             {
-                Id = todoList.Id;
-                Title = todoList.Title;
+                Id = id;
+                Title = title;
             }
 
             public long Id { get; }

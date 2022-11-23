@@ -30,6 +30,8 @@ namespace JosiArchitecture.Api.Controllers
 
         [HttpGet("{id:int}")]
         [ProducesResponseType(typeof(GetTodoListResponse), 200)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetTodoList(int id)
         {
             var response = await _mediator.Send(new GetTodoListRequest(id));
@@ -38,6 +40,8 @@ namespace JosiArchitecture.Api.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> AddTodoList([FromBody] AddTodoListCommand request)
         {
             var id = await _mediator.Send(request);

@@ -1,1 +1,6 @@
 # Empty ci build file for now
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: '.\src\JosiArchitecture.Api'

@@ -8,4 +8,4 @@ stages:
      - task: DotNetCoreCLI@2
        inputs:
          command: 'build'
-         projects: '.\src\JosiArchitecture.Api\JosiArchitecture.Api.csproj'
+         projects: 'src/JosiArchitecture.Api/JosiArchitecture.Api.csproj'

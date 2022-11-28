@@ -3,6 +3,10 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# Terraform files
+.terraform.lock.hcl
+.terraform
+
 # User-specific files
 *.suo
 *.user

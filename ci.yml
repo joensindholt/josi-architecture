@@ -33,7 +33,7 @@ stages:
          deployToSlotOrASE: true
          resourceGroupName: 'josi-architecture-resource-group'
          slotName: 'development'
-         package: '$(Build.ArtifactStagingDirectory)/*.zip'
+         package: '$(Build.ArtifactStagingDirectory)'
          runtimeStack: 'DOTNETCORE|7.0'
          startUpCommand: 'dotnet run'
 

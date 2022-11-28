@@ -32,5 +32,7 @@ resource "azurerm_windows_web_app" "josi-architecture-webapi" {
   location            = azurerm_service_plan.josi-architecture-service-plan.location
   service_plan_id     = azurerm_service_plan.josi-architecture-service-plan.id
 
-  site_config {}
+  site_config {
+    always_on = false
+  }
 }

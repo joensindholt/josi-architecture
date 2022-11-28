@@ -11,9 +11,9 @@ stages:
          script: |
            terraform init -input=false
            terraform apply -auto-approve
- - stage: Build and Deploy
+ - stage: BuildAndDeploy
    jobs:
-   - job: Build and Deploy
+   - job: BuildAndDeploy
      steps:
      - task: DotNetCoreCLI@2
        inputs:

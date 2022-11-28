@@ -28,12 +28,11 @@ stages:
      - task: AzureWebApp@1
        inputs:
          azureSubscription: 'Betalt efter forbrug(fd949dc3-162d-4991-a986-02631830a313)'
-         appType: 'webAppLinux'
+         appType: 'webApp'
          appName: 'josi-architecture-webapi'
          deployToSlotOrASE: true
          resourceGroupName: 'josi-architecture-resource-group'
          slotName: 'production'
          package: '$(Build.ArtifactStagingDirectory)'
-         runtimeStack: 'DOTNETCORE|7.0'
-         startUpCommand: 'dotnet run'
+         deploymentMethod: 'auto'
 

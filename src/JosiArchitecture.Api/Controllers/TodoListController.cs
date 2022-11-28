@@ -35,7 +35,6 @@ namespace JosiArchitecture.Api.Controllers
         public async Task<IActionResult> GetTodoList(int id)
         {
             var response = await _mediator.Send(new GetTodoListRequest(id));
-
             return response != null ? Ok(response) : NotFound();
         }
 

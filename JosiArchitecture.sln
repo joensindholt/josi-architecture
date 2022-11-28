@@ -17,7 +17,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JosiArchitecture.BlazorApp"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JosiArchitecture.UnitTests", "test\JosiArchitecture.UnitTests\JosiArchitecture.UnitTests.csproj", "{6C945F2B-D7F2-4380-A056-A1C67A41A3EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JosiArchitecture.IntegrationTests", "test\JosiArchitecture.IntegrationTests\JosiArchitecture.IntegrationTests.csproj", "{D81F3E80-A177-464A-83BA-96F3E6347285}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JosiArchitecture.IntegrationTests", "test\JosiArchitecture.IntegrationTests\JosiArchitecture.IntegrationTests.csproj", "{D81F3E80-A177-464A-83BA-96F3E6347285}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{97A7479A-E30A-4996-9D5B-EDD552A2EDA5}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+		global.json = global.json
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

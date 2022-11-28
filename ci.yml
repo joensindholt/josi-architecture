@@ -11,9 +11,9 @@ stages:
          script: |
            terraform init -input=false
            terraform apply -auto-approve
- - stage: Build
+ - stage: Build and Deploy
    jobs:
-   - job: Build
+   - job: Build and Deploy
      steps:
      - task: DotNetCoreCLI@2
        inputs:
@@ -32,7 +32,7 @@ stages:
          appName: 'josi-architecture-webapi'
          deployToSlotOrASE: true
          resourceGroupName: 'josi-architecture-resource-group'
-         slotName: 'development'
+         slotName: 'production'
          package: '$(Build.ArtifactStagingDirectory)'
          runtimeStack: 'DOTNETCORE|7.0'
          startUpCommand: 'dotnet run'

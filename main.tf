@@ -25,3 +25,12 @@ resource "azurerm_service_plan" "josi-architecture-service-plan" {
   os_type             = "Windows"
   sku_name            = "F1"
 }
+
+resource "azurerm_windows_web_app" "josi-architecture-webapi" {
+  name                = "josi-architecture-webapi"
+  resource_group_name = azurerm_service_plan.josi-architecture-service-plan.resource_group_name
+  location            = azurerm_service_plan.josi-architecture-service-plan.location
+  service_plan_id     = azurerm_service_plan.josi-architecture-service-plan.id
+
+  site_config {}
+}

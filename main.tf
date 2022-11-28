@@ -36,10 +36,3 @@ resource "azurerm_windows_web_app" "josi-architecture-webapi" {
     always_on = false
   }
 }
-
-resource "azurerm_linux_web_app_slot" "josi-architecture-webapi-development-slot" {
-  name           = "Development"
-  app_service_id = azurerm_windows_web_app.josi-architecture-webapi.id
-
-  site_config {}
-}

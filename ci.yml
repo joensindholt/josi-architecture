@@ -22,9 +22,9 @@ stages:
      - task: DotNetCoreCLI@2
        inputs:
          command: 'publish'
-         publishWebProjects: true
-         arguments: 'src/JosiArchitecture.Api/JosiArchitecture.Api.csproj --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
-         zipAfterPublish: True
+         publishWebProjects: false
+         projects: 'src/JosiArchitecture.Api/JosiArchitecture.Api.csproj'
+         arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
      - task: AzureWebApp@1
        inputs:
          azureSubscription: 'Betalt efter forbrug(fd949dc3-162d-4991-a986-02631830a313)'

@@ -14,31 +14,35 @@ stages:
  - stage: BuildAndDeploy
    jobs:
    - job: BuildAndDeploy
+     displayName: 'Build API and deploy to Azure App Service'
      pool:
        vmImage: 'windows-latest'
      steps:
      - task: DotNetCoreCLI@2
+       displayName: 'Build the API project'
        inputs:
          command: 'build'
          projects: 'src/JosiArchitecture.Api/JosiArchitecture.Api.csproj'
      - task: DotNetCoreCLI@2
+       displayName: 'Publish the API project'
        inputs:
          command: 'publish'
          publishWebProjects: false
          projects: 'src/JosiArchitecture.Api/JosiArchitecture.Api.csproj'
          arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
      - task: AzureRmWebAppDeployment@4
+       displayName: 'Deploy the API project'
        inputs:
-         ConnectionType: 'AzureRM'
-         AzureSubscription: 'Betalt efter forbrug(fd949dc3-162d-4991-a986-02631830a313)'
-         AppType: 'webApp'
-         WebAppName: 'josi-architecture-webapi'
+         connectionType: 'AzureRM'
+         azureSubscription: 'Betalt efter forbrug(fd949dc3-162d-4991-a986-02631830a313)'
+         appType: 'webApp'
+         webAppName: 'josi-architecture-webapi'
          #PackageForLinux: '$(Build.ArtifactStagingDirectory)'
-         Package: '$(Build.ArtifactStagingDirectory)'
-         TakeAppOfflineFlag: true
-         UseWebDeploy: true
-         EnableCustomDeployment: true
-         DeploymentMethod: 'runFromPackage'
+         package: '$(Build.ArtifactStagingDirectory)'
+        #  TakeAppOfflineFlag: true
+        #  UseWebDeploy: true
+        #  EnableCustomDeployment: true
+         deploymentMethod: 'zipDeploy'
 
          
 

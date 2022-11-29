@@ -42,7 +42,7 @@ stages:
         #  TakeAppOfflineFlag: true
          useWebDeploy: true
          enableCustomDeployment: true
-         deploymentMethod: 'zipDeploy'
+         deploymentMethod: 'webDeploy'
 
          
 

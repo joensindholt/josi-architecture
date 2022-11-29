@@ -14,7 +14,8 @@ stages:
  - stage: BuildAndDeploy
    jobs:
    - job: BuildAndDeploy
-     pool: 'windows-latest'
+     pool:
+       vmImage: 'windows-latest'
      steps:
      - task: DotNetCoreCLI@2
        inputs:

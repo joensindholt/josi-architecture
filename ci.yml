@@ -30,6 +30,7 @@ stages:
          publishWebProjects: false
          projects: 'src/JosiArchitecture.Api/JosiArchitecture.Api.csproj'
          arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+         zipAfterPublish: True
      - task: AzureRmWebAppDeployment@4
        displayName: 'Deploy the API project'
        inputs:

@@ -40,8 +40,8 @@ stages:
          #PackageForLinux: '$(Build.ArtifactStagingDirectory)'
          package: '$(Build.ArtifactStagingDirectory)'
         #  TakeAppOfflineFlag: true
-        #  UseWebDeploy: true
-        #  EnableCustomDeployment: true
+         useWebDeploy: true
+         enableCustomDeployment: true
          deploymentMethod: 'zipDeploy'
 
          

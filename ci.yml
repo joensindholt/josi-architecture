@@ -31,19 +31,23 @@ stages:
          projects: 'src/JosiArchitecture.Api/JosiArchitecture.Api.csproj'
          arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
          zipAfterPublish: True
-     - task: AzureRmWebAppDeployment@4
-       displayName: 'Deploy the API project'
+    #  - task: AzureRmWebAppDeployment@4
+    #    displayName: 'Deploy the API project'
+    #    inputs:
+    #      connectionType: 'AzureRM'
+    #      azureSubscription: 'Betalt efter forbrug(fd949dc3-162d-4991-a986-02631830a313)'
+    #      appType: 'webApp'
+    #      webAppName: 'josi-architecture-webapi'
+    #      #PackageForLinux: '$(Build.ArtifactStagingDirectory)'
+    #      package: '$(Build.ArtifactStagingDirectory)'
+    #     #  TakeAppOfflineFlag: true
+    #      useWebDeploy: true
+    #      enableCustomDeployment: true
+    #      deploymentMethod: 'webDeploy'
+     - task: PublishBuildArtifacts@1
+       displayName: 'Publish build artifact'
        inputs:
-         connectionType: 'AzureRM'
-         azureSubscription: 'Betalt efter forbrug(fd949dc3-162d-4991-a986-02631830a313)'
-         appType: 'webApp'
-         webAppName: 'josi-architecture-webapi'
-         #PackageForLinux: '$(Build.ArtifactStagingDirectory)'
-         package: '$(Build.ArtifactStagingDirectory)'
-        #  TakeAppOfflineFlag: true
-         useWebDeploy: true
-         enableCustomDeployment: true
-         deploymentMethod: 'webDeploy'
-
-         
+         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+         ArtifactName: 'drop'
+         publishLocation: 'Container'
 

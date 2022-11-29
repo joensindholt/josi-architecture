@@ -31,10 +31,5 @@ stages:
          azureSubscription: 'Betalt efter forbrug(fd949dc3-162d-4991-a986-02631830a313)'
          appType: 'webApp'
          WebAppName: 'josi-architecture-webapi'
-         deployToSlotOrASE: true
-         ResourceGroupName: 'josi-architecture-resource-group'
-         SlotName: 'production'
          packageForLinux: '$(Build.ArtifactStagingDirectory)'
-         enableCustomDeployment: true
-         DeploymentType: 'webDeploy'
 

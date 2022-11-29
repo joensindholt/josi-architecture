@@ -32,4 +32,6 @@ stages:
          appType: 'webApp'
          WebAppName: 'josi-architecture-webapi'
          packageForLinux: '$(Build.ArtifactStagingDirectory)'
+         enableCustomDeployment: true
+         DeploymentType: 'webDeploy'
 

@@ -30,10 +30,13 @@ stages:
      - task: AzureRmWebAppDeployment@4
        inputs:
          ConnectionType: 'AzureRM'
-         azureSubscription: 'Betalt efter forbrug(fd949dc3-162d-4991-a986-02631830a313)'
-         appType: 'webApp'
+         AzureSubscription: 'Betalt efter forbrug(fd949dc3-162d-4991-a986-02631830a313)'
+         AppType: 'webApp'
          WebAppName: 'josi-architecture-webapi'
-         packageForLinux: '$(Build.ArtifactStagingDirectory)'
-         enableCustomDeployment: true
-         DeploymentType: 'webDeploy'
+         #PackageForLinux: '$(Build.ArtifactStagingDirectory)'
+         Package: '$(Build.ArtifactStagingDirectory)'
+         TakeAppOfflineFlag: true
+         UseWebDeploy: true
+         DeploymentType: zipDeploy
+         
 

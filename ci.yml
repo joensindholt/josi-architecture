@@ -37,6 +37,8 @@ stages:
          Package: '$(Build.ArtifactStagingDirectory)'
          TakeAppOfflineFlag: true
          UseWebDeploy: true
-         DeploymentType: zipDeploy
+         EnableCustomDeployment: true
+         DeploymentMethod: 'runFromPackage'
+
          
 

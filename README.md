@@ -21,6 +21,14 @@ Boilerplate implementation of a web api and frontend using .NET 7 WebApi and Bla
 - Add slugs to avoid exposing internal id's. This increases security by not allowing a user to guess other entity id's
 - Background work handling
 
+## Database
+
+Update database
+```
+cd src\JosiArchitecture.Data
+dotnet ef database update -s ..\JosiArchitecture.Api\JosiArchitecture.Api.csproj
+```
+
 ## Azure
 
 Create Service Principal

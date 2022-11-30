@@ -30,4 +30,9 @@ stages:
          PathtoPublish: '$(Build.ArtifactStagingDirectory)'
          ArtifactName: 'drop'
          publishLocation: 'Container'
-
+     - task: AzureRmWebAppDeployment@4
+       displayName: 'Deploy Api to Azure App Service'
+       inputs:
+         azureSubscription: 'Betalt efter forbrug(fd949dc3-162d-4991-a986-02631830a313)'
+         appType: 'webApp'
+         WebAppName: 'josi-architecture-webapi'

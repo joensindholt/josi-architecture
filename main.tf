@@ -34,5 +34,8 @@ resource "azurerm_windows_web_app" "josi-architecture-webapi" {
 
   site_config {
     always_on = false
+    app_settings = {
+      WEBSITE_RUN_FROM_PACKAGE = 1
+    }
   }
 }

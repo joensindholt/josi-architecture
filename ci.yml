@@ -35,4 +35,5 @@ stages:
        inputs:
          azureSubscription: 'Betalt efter forbrug(fd949dc3-162d-4991-a986-02631830a313)'
          appType: 'webApp'
-         WebAppName: 'josi-architecture-webapi'
+         webAppName: 'josi-architecture-webapi'
+         package: '$(Build.ArtifactStagingDirectory)/**/JosiArchitecture.Api.zip'

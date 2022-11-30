@@ -36,7 +36,7 @@ namespace JosiArchitecture.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DataStore dataStore)
         {
-            dataStore.Database.Migrate();
+            //dataStore.Database.Migrate();
 
             if (env.IsDevelopment())
             {

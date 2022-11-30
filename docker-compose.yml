@@ -1,5 +1,15 @@
 version: "3.8"
+
 services:
+    webapi:
+        build:
+          context: .
+          dockerfile: src/JosiArchitecture.Api/Dockerfile
+        ports:
+          - "8000:80"
+        environment:
+          - ASPNETCORE_ENVIRONMENT=Development
+
     database:
         image: mcr.microsoft.com/mssql/server:2019-latest
         ports:

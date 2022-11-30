@@ -1,8 +1,10 @@
 ﻿using JosiArchitecture.Api.Shared.ErrorHandling;
 using JosiArchitecture.Core;
+using JosiArchitecture.Core.Shared.Persistence;
 using JosiArchitecture.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,15 +27,17 @@ namespace JosiArchitecture.Api
             services.AddCoreServices();
 
             // Application data services
-            services.AddDataServices();
+            services.AddDataServices(Configuration);
 
             // Api services
             services.AddApiServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DataStore dataStore)
         {
+            dataStore.Database.Migrate();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

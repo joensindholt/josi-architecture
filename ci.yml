@@ -10,6 +10,7 @@ stages:
          targetType: 'inline'
          script: |
            terraform init -input=false
+           terraform apply -auto-approve -target=azurerm_windows_web_app.josi_architecture_webapi
            terraform apply -auto-approve
  - stage: Publish
    jobs:

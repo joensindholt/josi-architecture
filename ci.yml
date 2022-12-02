@@ -52,7 +52,10 @@ stages:
        - task: PowerShell@2
          inputs:
            targetType: 'inline'
-           script: "echo ${dependencies.Provision.outputs['terraform.angular_site_api_key']}"
+           script: | 
+             echo "Foo"
+             echo $(angular_site_api_key)
+             echo "Bar"
        - task: AzureStaticWebApp@0
          inputs:
            azure_static_web_apps_api_token: $(angular_site_api_key)

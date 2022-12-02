@@ -45,12 +45,18 @@ stages:
    - job: Angular
      displayName: Build and deploy Angular app
      steps:
+       - task: AzureStaticWebApp@0
+         inputs:
+           azure_static_web_apps_api_token: $(TERRAFORM_OUTPUT_angular_site_api_key)
+           app_location: '/src/JosiArchitecture.AngularApp'
+           output_location: '/dist/josi-architecture.angular-app'
+           
     #  - task: 
     #  - name: Build And Deploy
     #    id: builddeploy
     #    uses: Azure/static-web-apps-deploy@v1
     #    with:
-    #      azure_static_web_apps_api_token: $(TERRAFORM_OUTPUT_angular_site_api_key)
+    #      azure_static_web_apps_api_token: 
     #      repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
     #      action: "upload"
     #      ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######

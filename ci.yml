@@ -44,7 +44,7 @@ stages:
  - stage: Angular
    dependsOn: Provision
    variables:
-    angular_site_api_key: $[ dependencies.Provision.outputs['terraform.angular_site_api_key'] ]
+    angular_site_api_key: $[ dependencies.Provision.Provision.outputs['terraform.angular_site_api_key'] ]
    jobs:
    - job: Angular
      displayName: Build and deploy Angular app

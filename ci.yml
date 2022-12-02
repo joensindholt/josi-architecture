@@ -50,7 +50,9 @@ stages:
      displayName: Build and deploy Angular app
      steps:
        - task: PowerShell@2
-         script: "echo ${dependencies.Provision.outputs['terraform.angular_site_api_key']}"
+         inputs:
+           targetType: 'inline'
+           script: "echo ${dependencies.Provision.outputs['terraform.angular_site_api_key']}"
        - task: AzureStaticWebApp@0
          inputs:
            azure_static_web_apps_api_token: $(angular_site_api_key)

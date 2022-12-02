@@ -94,3 +94,14 @@ resource "azurerm_mssql_firewall_rule" "josi_architecture_webapi_firewall_rule" 
   start_ip_address = each.key
   end_ip_address   = each.key
 }
+
+resource "azurerm_static_site" "josi_architecture_angular_site" {
+  name                = "josi-architecture-angular-site"
+  resource_group_name = var.resource_group
+  location            = var.location
+}
+
+output "angular_site_api_key" {
+  description = "The API key of the Angular Static Web App, which is used for later interacting with this Static Web App from other clients, e.g. GitHub Action."
+  value       = azurerm_static_site.josi_architecture_angular_site.api_key
+}

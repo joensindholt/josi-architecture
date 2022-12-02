@@ -54,7 +54,7 @@ stages:
            targetType: 'inline'
            script: | 
              echo "Foo"
-             echo $(angular_site_api_key)
+             echo ${angular_site_api_key}
              echo "Bar"
        - task: AzureStaticWebApp@0
          inputs:

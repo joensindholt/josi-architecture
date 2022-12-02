@@ -29,6 +29,11 @@ variable "location" {
   default = "North Europe"
 }
 
+variable "angular_app_location" {
+  type    = string
+  default = "westeurope"
+}
+
 data "azurerm_key_vault" "josi_architecture_key_vault" {
   name                = "josi-arch-key-vault"
   resource_group_name = var.resource_group
@@ -98,7 +103,7 @@ resource "azurerm_mssql_firewall_rule" "josi_architecture_webapi_firewall_rule" 
 resource "azurerm_static_site" "josi_architecture_angular_site" {
   name                = "josi-architecture-angular-site"
   resource_group_name = var.resource_group
-  location            = var.location
+  location            = var.angular_app_location
 }
 
 output "angular_site_api_key" {

@@ -14,8 +14,8 @@ stages:
            #  #terraform apply -auto-approve -target="azurerm_windows_web_app.josi_architecture_webapi"
            #  #terraform apply -auto-approve
            #  terraform apply -auto-approve -target="azurerm_static_site.josi_architecture_angular_site"
-           #  Write-Host "##vso[task.setvariable variable=angular_site_api_key;isOutput=true](terraform output angular_site_api_key)"
-           Write-Host "##vso[task.setvariable variable=angular_site_api_key;isOutput=true]Foo"
+           Write-Host "##vso[task.setvariable variable=angular_site_api_key;isOutput=true](terraform output angular_site_api_key)"
+           #  Write-Host "##vso[task.setvariable variable=angular_site_api_key;isOutput=true]Foo"
 #  - stage: Api
 #    jobs:
 #    - job: PublishAndDeploy

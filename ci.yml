@@ -45,7 +45,7 @@ stages:
  - stage: Angular
    dependsOn: Provision
    variables:
-    angular_site_api_key: $[ dependencies.Provision.outputs['terraform.angular_site_api_key'] ]
+    angular_site_api_key: $[ stageDependencies.Provision.Provision.outputs['terraform.angular_site_api_key'] ]
     bingo: bango
    jobs:
    - job: Angular

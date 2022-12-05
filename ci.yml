@@ -53,6 +53,12 @@ stages:
    - job: Angular
      displayName: Build and deploy Angular app
      steps:
+       - task: PowerShell@2
+         inputs:
+           targetType: 'inline'
+           script: | 
+             echo "Deploying to static web app using token:"
+             echo $(angular_site_api_key)
        - task: AzureStaticWebApp@0
          inputs:
            azure_static_web_apps_api_token: $(angular_site_api_key)

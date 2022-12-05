@@ -7,6 +7,9 @@ stages:
      steps:
      - task: PowerShell@2
        name: terraform
+       variables:
+        - name: angular_site_api_key
+          value: initial_angular_site_api_key
        inputs:
          targetType: 'inline'
          script: |

@@ -53,18 +53,11 @@ stages:
    - job: Angular
      displayName: Build and deploy Angular app
      steps:
-       - task: PowerShell@2
+       - task: AzureStaticWebApp@0
          inputs:
-           targetType: 'inline'
-           script: | 
-             echo "Hardcoded"
-             echo $(bingo)
-             echo $(angular_site_api_key)
-      #  - task: AzureStaticWebApp@0
-      #    inputs:
-      #      azure_static_web_apps_api_token: $(angular_site_api_key)
-      #      app_location: '/src/JosiArchitecture.AngularApp'
-      #      output_location: '/dist/josi-architecture.angular-app'
+           azure_static_web_apps_api_token: $(angular_site_api_key)
+           app_location: '/src/JosiArchitecture.AngularApp'
+           output_location: '/dist/josi-architecture.angular-app'
            
     #  - task: 
     #  - name: Build And Deploy

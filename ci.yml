@@ -10,11 +10,12 @@ stages:
        inputs:
          targetType: 'inline'
          script: |
-           terraform init -input=false
-           #terraform apply -auto-approve -target="azurerm_windows_web_app.josi_architecture_webapi"
-           #terraform apply -auto-approve
-           terraform apply -auto-approve -target="azurerm_static_site.josi_architecture_angular_site"
-           Write-Host "##vso[task.setvariable variable=angular_site_api_key;isOutput=true](terraform output angular_site_api_key)"
+           #  terraform init -input=false
+           #  #terraform apply -auto-approve -target="azurerm_windows_web_app.josi_architecture_webapi"
+           #  #terraform apply -auto-approve
+           #  terraform apply -auto-approve -target="azurerm_static_site.josi_architecture_angular_site"
+           #  Write-Host "##vso[task.setvariable variable=angular_site_api_key;isOutput=true](terraform output angular_site_api_key)"
+           Write-Host "##vso[task.setvariable variable=angular_site_api_key;isOutput=true]Foo"
 #  - stage: Api
 #    jobs:
 #    - job: PublishAndDeploy
@@ -44,7 +45,8 @@ stages:
  - stage: Angular
    dependsOn: Provision
    variables:
-    angular_site_api_key: $[ dependencies.Provision.outputs['terraform.angular_site_api_key'] ]
+    angular_site_api_key: $[ dependencies.Provision.Provision.outputs['terraform.angular_site_api_key'] ]
+    bingo: bango
    jobs:
    - job: Angular
      displayName: Build and deploy Angular app
@@ -52,12 +54,14 @@ stages:
        - task: PowerShell@2
          inputs:
            targetType: 'inline'
-           script: "echo ${dependencies.Provision.outputs['terraform.angular_site_api_key']}"
-       - task: AzureStaticWebApp@0
-         inputs:
-           azure_static_web_apps_api_token: $(angular_site_api_key)
-           app_location: '/src/JosiArchitecture.AngularApp'
-           output_location: '/dist/josi-architecture.angular-app'
+           script: | 
+             echo $(angular_site_api_key)
+             echo $(bingo)
+      #  - task: AzureStaticWebApp@0
+      #    inputs:
+      #      azure_static_web_apps_api_token: $(angular_site_api_key)
+      #      app_location: '/src/JosiArchitecture.AngularApp'
+      #      output_location: '/dist/josi-architecture.angular-app'
            
     #  - task: 
     #  - name: Build And Deploy

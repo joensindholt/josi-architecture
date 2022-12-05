@@ -55,8 +55,9 @@ stages:
          inputs:
            targetType: 'inline'
            script: | 
-             echo $(angular_site_api_key)
+             echo "Hardcoded"
              echo $(bingo)
+             echo $(angular_site_api_key)
       #  - task: AzureStaticWebApp@0
       #    inputs:
       #      azure_static_web_apps_api_token: $(angular_site_api_key)

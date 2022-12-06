@@ -9,6 +9,12 @@ stages:
      - group: Terraform
      steps:
      - task: PowerShell@2
+       displayName: 'Install terragrunt'
+       inputs:
+         targetType: 'inline'
+         script: |
+           apt install terragrunt -y
+     - task: PowerShell@2
        name: terraform
        inputs:
          targetType: 'inline'

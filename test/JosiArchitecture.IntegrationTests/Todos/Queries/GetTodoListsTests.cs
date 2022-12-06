@@ -7,19 +7,29 @@ using System.Net.Http.Json;
 
 namespace JosiArchitecture.UnitTests.Todos.Queries
 {
-    public class GetTodoListsTests : IntegrationTest
+    [Collection(IntegrationTestsCollection.Name)]
+    public class GetTodoListsTests
     {
+        private readonly IntegrationTestFixture _fixture;
+
+        public GetTodoListsTests(IntegrationTestFixture fixture)
+        {
+            this._fixture = fixture;
+        }
+
         [Fact]
         public async Task GetTodoLists_StatusCodeOkAndReturnsListOfTodoLists()
         {
             // Arrange
-            await Client.PostAsJsonAsync("/todolists", new AddTodoListCommand
+            await _fixture.ResetDatabase();
+
+            await _fixture.Client.PostAsJsonAsync("/todolists", new AddTodoListCommand
             {
                 Title = "Test"
             });
 
             // Act
-            var response = await Client.GetAsync("/todolists");
+            var response = await _fixture.Client.GetAsync("/todolists");
 
             // Assert
             response.StatusCode.Should().Be(HttpStatusCode.OK);

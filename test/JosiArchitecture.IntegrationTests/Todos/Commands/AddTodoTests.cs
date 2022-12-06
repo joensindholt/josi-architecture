@@ -3,20 +3,29 @@ using FluentAssertions;
 using JosiArchitecture.Core.Todos.Commands.AddTodoList;
 using System.Net;
 using System.Net.Http.Json;
-using System.Threading;
 
 namespace JosiArchitecture.UnitTests.Todos.Commands
 {
-    public class AddTodoTests : IntegrationTest
+    [Collection(IntegrationTestsCollection.Name)]
+    public class AddTodoTests
     {
+        private readonly IntegrationTestFixture _fixture;
+
+        public AddTodoTests(IntegrationTestFixture fixture)
+        {
+            this._fixture = fixture;
+        }
+
         [Fact]
         public async Task AddTodoList_ReturnsStatusCodeCreated_WhenRequestIsValid()
         {
             // Arrange
+            await _fixture.ResetDatabase();
+
             var title = new Faker().Random.Word();
 
             // Act
-            var response = await Client.PostAsJsonAsync(
+            var response = await _fixture.Client.PostAsJsonAsync(
                 "/todolists",
                 new AddTodoListCommand
                 {
@@ -32,10 +41,12 @@ namespace JosiArchitecture.UnitTests.Todos.Commands
         public async Task AddTodoList_ReturnsStatusCodeBadRequest_WhenRequestIsInvalid()
         {
             // Arrange
+            await _fixture.ResetDatabase();
+
             string? title = null;
 
             // Act
-            var response = await Client.PostAsJsonAsync(
+            var response = await _fixture.Client.PostAsJsonAsync(
                 "/todolists",
                 new AddTodoListCommand
                 {

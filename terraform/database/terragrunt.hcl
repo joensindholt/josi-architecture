@@ -6,9 +6,9 @@ dependencies {
   paths = ["../api", "../frontend"]
 }
 
-
 dependency "api" {
   config_path = "../api"
+  skip_outputs = true
 }
 
 inputs = {

@@ -13,8 +13,11 @@ stages:
        inputs:
          targetType: 'inline'
          script: |
-           sudo apt-get update
-           sudo snap install terragrunt
+           wget https://github.com/gruntwork-io/terragrunt/releases/download/v0.42.3/terragrunt_darwin_amd64
+           mv terragrunt_darwin_amd64 terragrunt
+           chmod u+x terragrunt
+           sudo mv terragrunt /usr/local/bin/terragrunt
+           terragrunt
      - task: PowerShell@2
        inputs:
          targetType: 'inline'

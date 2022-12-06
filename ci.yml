@@ -13,8 +13,8 @@ stages:
        inputs:
          targetType: 'inline'
          script: |
-           wget https://github.com/gruntwork-io/terragrunt/releases/download/v0.42.3/terragrunt_darwin_amd64
-           mv terragrunt_darwin_amd64 terragrunt
+           wget https://github.com/gruntwork-io/terragrunt/releases/download/v0.42.3/terragrunt_linux_amd64
+           mv terragrunt_linux_amd64 terragrunt
            chmod u+x terragrunt
            sudo mv terragrunt /usr/local/bin/terragrunt
      - task: PowerShell@2

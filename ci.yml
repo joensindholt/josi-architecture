@@ -14,7 +14,7 @@ stages:
          targetType: 'inline'
          script: |
            sudo apt-get update
-           sudo snap install terragrunt -y
+           sudo snap install terragrunt
      - task: PowerShell@2
        name: terraform
        inputs:

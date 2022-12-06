@@ -8,7 +8,9 @@ dependencies {
 
 dependency "api" {
   config_path = "../api"
-  skip_outputs = true
+  mock_outputs = {
+      outbound_ip_address_list = []
+  }
 }
 
 inputs = {

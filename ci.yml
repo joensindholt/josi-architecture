@@ -18,22 +18,15 @@ stages:
            chmod u+x terragrunt
            sudo mv terragrunt /usr/local/bin/terragrunt
      - task: PowerShell@2
-       inputs:
-         targetType: 'inline'
-         script: |
-           cd terraform
-           terragrunt run-all init -input=false
-     - task: PowerShell@2
+       displayName: 'Apply terraform configuration'
        name: terraform
        inputs:
          targetType: 'inline'
          script: |
            cd terraform
-           terragrunt run-all apply -auto-approve
+           terragrunt run-all init --terragrunt-log-level debug --terragrunt-non-interactive -input=false
+           terragrunt run-all apply --terragrunt-log-level debug --terragrunt-non-interactive -auto-approve
            Write-Host "##vso[task.setvariable variable=angular_site_api_key;isOutput=true]$((terraform output angular_site_api_key).Trim().Replace('"', ''))"
-           #  #terraform apply -auto-approve -target="azurerm_windows_web_app.josi_architecture_webapi"
-           #  #terraform apply -auto-approve
-           #  terraform apply -auto-approve -target="azurerm_static_site.josi_architecture_angular_site"
  - stage: Api
    jobs:
    - job: PublishAndDeploy

@@ -13,7 +13,8 @@ stages:
        inputs:
          targetType: 'inline'
          script: |
-           apt install terragrunt -y
+           sudo apt-get update
+           sudo apt-get install terragrunt -y
      - task: PowerShell@2
        name: terraform
        inputs:

@@ -1,13 +1,16 @@
-﻿using JosiArchitecture.Api.Shared.ErrorHandling;
+﻿using Azure.Identity;
+using JosiArchitecture.Api.Shared.ErrorHandling;
 using JosiArchitecture.Core;
 using JosiArchitecture.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.AzureAppServices;
+using System;
 
 namespace JosiArchitecture.Api
 {
@@ -18,6 +21,14 @@ namespace JosiArchitecture.Api
             var builder = WebApplication.CreateBuilder(args);
 
             ConfigureLogging(builder);
+
+            // Add Azure Key Vault to configuration
+            if (builder.Environment.IsProduction())
+            {
+                builder.Configuration.AddAzureKeyVault(
+                    new Uri($"https://josi-arch-key-vault.vault.azure.net/"),
+                    new DefaultAzureCredential());
+            }
 
             // Application core services
             builder.Services.AddCoreServices();

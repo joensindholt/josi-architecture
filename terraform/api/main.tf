@@ -39,6 +39,10 @@ resource "azurerm_windows_web_app" "josi_architecture_webapi" {
   location            = var.location
   service_plan_id     = azurerm_service_plan.josi_architecture_service_plan.id
 
+  identity {
+    type = "SystemAssigned"
+  }
+
   app_settings = {
     WEBSITE_RUN_FROM_PACKAGE = 1
   }
@@ -53,8 +57,8 @@ data "azurerm_client_config" "current" {
 
 resource "azurerm_key_vault_access_policy" "josi_architecture_webapi_access_policy" {
   key_vault_id = data.azurerm_key_vault.josi_architecture_key_vault.id
-  tenant_id    = data.azurerm_client_config.current.tenant_id
-  object_id    = azurerm_windows_web_app.josi_architecture_webapi.identity.principal_id
+  tenant_id    = azurerm_windows_web_app.josi_architecture_webapi.identity[0].tenant_id
+  object_id    = azurerm_windows_web_app.josi_architecture_webapi.identity[0].principal_id
 
   secret_permissions = [
     "Get",
@@ -66,5 +70,5 @@ output "outbound_ip_address_list" {
 }
 
 output "identity_principal_id" {
-  value = azurerm_windows_web_app.josi_architecture_webapi.identity.principal_id
+  value = azurerm_windows_web_app.josi_architecture_webapi.identity[0].principal_id
 }

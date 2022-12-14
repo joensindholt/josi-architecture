@@ -24,8 +24,8 @@ stages:
          targetType: 'inline'
          script: |
            cd terraform
-           terragrunt run-all init --terragrunt-log-level debug --terragrunt-non-interactive -input=false
-           terragrunt run-all apply --terragrunt-log-level debug --terragrunt-non-interactive -auto-approve
+           terragrunt run-all init --terragrunt-non-interactive -input=false
+           terragrunt run-all apply --terragrunt-non-interactive -auto-approve
            cd frontend
            Write-Host "##vso[task.setvariable variable=angular_site_api_key;isOutput=true]$((terraform output angular_site_api_key).Trim().Replace('"', ''))"
  - stage: Api

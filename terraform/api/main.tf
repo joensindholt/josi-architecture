@@ -62,6 +62,7 @@ resource "azurerm_key_vault_access_policy" "josi_architecture_webapi_access_poli
 
   secret_permissions = [
     "Get",
+    "List"
   ]
 }
 

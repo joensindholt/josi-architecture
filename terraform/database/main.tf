@@ -51,3 +51,9 @@ resource "azurerm_mssql_firewall_rule" "josi_architecture_webapi_firewall_rule" 
   start_ip_address = each.key
   end_ip_address   = each.key
 }
+
+resource "azurerm_key_vault_secret" "connection_string" {
+  name         = "ConnectionStrings--JosiArchitectureDatabase"
+  value        = "Server=tcp:${azurerm_mssql_server.josi_architecture_sql_server.name}.database.windows.net,1433;Initial Catalog=${azurerm_mssql_database.josi_architecture_sql_database.name};Persist Security Info=False;User ID=${data.azurerm_key_vault_secret.sql_server_administrator_login.value};Password=${data.azurerm_key_vault_secret.sql_server_administrator_password.value};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+  key_vault_id = data.azurerm_key_vault.josi_architecture_key_vault.id
+}

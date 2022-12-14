@@ -27,7 +27,6 @@ stages:
            terragrunt run-all init --terragrunt-log-level debug --terragrunt-non-interactive -input=false
            terragrunt run-all apply --terragrunt-log-level debug --terragrunt-non-interactive -auto-approve
            Write-Host "##vso[task.setvariable variable=angular_site_api_key;isOutput=true]$((terraform output angular_site_api_key).Trim().Replace('"', ''))"
-           echo $exitCode
  - stage: Api
    jobs:
    - job: PublishAndDeploy

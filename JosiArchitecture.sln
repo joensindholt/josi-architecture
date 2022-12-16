@@ -28,6 +28,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{BBE4F54A-A8BC-4ADC-B30E-AAFE52D41659}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JosiArchitecture.SpecFlowTests", "test\JosiArchitecture.SpecFlowTests\JosiArchitecture.SpecFlowTests.csproj", "{E06D6AB6-4A64-42B3-B07F-8D1402F4E0D3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +64,10 @@ Global
 		{BBE4F54A-A8BC-4ADC-B30E-AAFE52D41659}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BBE4F54A-A8BC-4ADC-B30E-AAFE52D41659}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BBE4F54A-A8BC-4ADC-B30E-AAFE52D41659}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E06D6AB6-4A64-42B3-B07F-8D1402F4E0D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E06D6AB6-4A64-42B3-B07F-8D1402F4E0D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E06D6AB6-4A64-42B3-B07F-8D1402F4E0D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E06D6AB6-4A64-42B3-B07F-8D1402F4E0D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,6 +79,7 @@ Global
 		{8EED2F5E-C25B-4CE0-A562-2347C5E5DA3A} = {1B17A3CC-8026-49FB-9ED9-820440EF0AE2}
 		{6C945F2B-D7F2-4380-A056-A1C67A41A3EB} = {CA0A10F7-C9DE-4483-8842-6F50C628F7FE}
 		{D81F3E80-A177-464A-83BA-96F3E6347285} = {CA0A10F7-C9DE-4483-8842-6F50C628F7FE}
+		{E06D6AB6-4A64-42B3-B07F-8D1402F4E0D3} = {CA0A10F7-C9DE-4483-8842-6F50C628F7FE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BF38D60C-4624-4FE1-A8D5-B5F8986AC780}

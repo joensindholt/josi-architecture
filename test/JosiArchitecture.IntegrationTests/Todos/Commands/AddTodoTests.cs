@@ -25,7 +25,7 @@ namespace JosiArchitecture.UnitTests.Todos.Commands
             var title = new Faker().Random.Word();
 
             // Act
-            var response = await _fixture.Client.PostAsJsonAsync(
+            var response = await _fixture.Client!.PostAsJsonAsync(
                 "/todolists",
                 new AddTodoListCommand
                 {
@@ -46,7 +46,7 @@ namespace JosiArchitecture.UnitTests.Todos.Commands
             string? title = null;
 
             // Act
-            var response = await _fixture.Client.PostAsJsonAsync(
+            var response = await _fixture.Client!.PostAsJsonAsync(
                 "/todolists",
                 new AddTodoListCommand
                 {

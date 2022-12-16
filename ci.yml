@@ -1,32 +1,32 @@
 stages:
- - stage: Provision
-   variables:
-    - name: angular_site_api_key
-      value: initial_angular_site_api_key
-   jobs:
-   - job: Provision
-     variables:
-     - group: Terraform
-     steps:
-     - task: PowerShell@2
-       displayName: 'Install terragrunt'
-       inputs:
-         targetType: 'inline'
-         script: |
-           wget https://github.com/gruntwork-io/terragrunt/releases/download/v0.42.3/terragrunt_linux_amd64
-           mv terragrunt_linux_amd64 terragrunt
-           chmod u+x terragrunt
-           sudo mv terragrunt /usr/local/bin/terragrunt
-     - task: PowerShell@2
-       displayName: 'Apply terraform configuration'
-       name: terraform
-       inputs:
-         targetType: 'inline'
-         script: |
-           cd terraform
-           terragrunt run-all init --terragrunt-non-interactive -input=false
-           terragrunt run-all apply --terragrunt-non-interactive -auto-approve
-           cd frontend; Write-Host "##vso[task.setvariable variable=angular_site_api_key;isOutput=true]$((terraform output angular_site_api_key).Trim().Replace('"', ''))"
+#  - stage: Provision
+#    variables:
+#     - name: angular_site_api_key
+#       value: initial_angular_site_api_key
+#    jobs:
+#    - job: Provision
+#      variables:
+#      - group: Terraform
+#      steps:
+#      - task: PowerShell@2
+#        displayName: 'Install terragrunt'
+#        inputs:
+#          targetType: 'inline'
+#          script: |
+#            wget https://github.com/gruntwork-io/terragrunt/releases/download/v0.42.3/terragrunt_linux_amd64
+#            mv terragrunt_linux_amd64 terragrunt
+#            chmod u+x terragrunt
+#            sudo mv terragrunt /usr/local/bin/terragrunt
+#      - task: PowerShell@2
+#        displayName: 'Apply terraform configuration'
+#        name: terraform
+#        inputs:
+#          targetType: 'inline'
+#          script: |
+#            cd terraform
+#            terragrunt run-all init --terragrunt-non-interactive -input=false
+#            terragrunt run-all apply --terragrunt-non-interactive -auto-approve
+#            cd frontend; Write-Host "##vso[task.setvariable variable=angular_site_api_key;isOutput=true]$((terraform output angular_site_api_key).Trim().Replace('"', ''))"
  - stage: Api
    jobs:
    - job: Test

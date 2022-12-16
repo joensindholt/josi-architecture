@@ -29,6 +29,13 @@ stages:
            cd frontend; Write-Host "##vso[task.setvariable variable=angular_site_api_key;isOutput=true]$((terraform output angular_site_api_key).Trim().Replace('"', ''))"
  - stage: Api
    jobs:
+   - job: Test
+     displayName: Run Specflow Tests
+     steps:
+     - task: DotNetCoreCLI@2
+       inputs:
+         command: 'test'
+         projects: 'test/JosiArchitecture.SpecFlowTests/JosiArchitecture.SpecFlowTests.csproj'
    - job: PublishAndDeploy
      displayName: 'Build and deploy Api'
      steps:

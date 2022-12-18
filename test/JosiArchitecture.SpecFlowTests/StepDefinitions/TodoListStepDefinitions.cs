@@ -8,7 +8,7 @@ namespace JosiArchitecture.SpecFlowTests.StepDefinitions
     [Binding]
     public sealed class TodoListStepDefinitions
     {
-        private GetTodoListsResponse? _todoLists;
+        private GetTodoListsResponse? _todoListsResponse;
 
         [Given("I add a todo list named '(.*)'")]
         public async Task IAddATodoList(string title)
@@ -27,15 +27,15 @@ namespace JosiArchitecture.SpecFlowTests.StepDefinitions
         {
             var response = await Hooks.Hooks.Client.GetAsync("/todolists");
             response.EnsureSuccessStatusCode();
-            _todoLists = await response.Content.ReadAsAsync<GetTodoListsResponse>();
+            _todoListsResponse = await response.Content.ReadAsAsync<GetTodoListsResponse>();
         }
 
-        [Then("I get a list of todo lists containing one name '(.*)'")]
+        [Then("I get a list of todo lists containing one named '(.*)'")]
         public void ThenTheResultShouldBe(string title)
         {
-            _todoLists.Should().NotBeNull();
-            _todoLists.TodoLists.Should().NotBeEmpty();
-            _todoLists.TodoLists.Should().Satisfy(x => x.Title == title);
+            _todoListsResponse.Should().NotBeNull();
+            _todoListsResponse.TodoLists.Should().NotBeEmpty();
+            _todoListsResponse.TodoLists.Should().Satisfy(x => x.Title == title);
         }
     }
 }

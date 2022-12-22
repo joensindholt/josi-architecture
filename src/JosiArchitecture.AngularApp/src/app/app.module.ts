@@ -1,5 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { isDevMode, NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { EffectsModule } from '@ngrx/effects';
@@ -20,6 +21,7 @@ import { TodosComponent } from './todos/todos.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
     StoreModule.forRoot({ count: counterReducer, todos: todosReducer }, {}),
     EffectsModule.forRoot([TodoEffects]),
     // Instrumentation must be imported after importing StoreModule (config is optional)

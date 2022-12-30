@@ -24,7 +24,7 @@ export class TodosComponent implements OnInit {
     private changeDetectorRef: ChangeDetectorRef
   ) {
     // When only relying on the form valueschanges for filtering todos
-    // it does not work on page refresh. Therefor we merge the valuesChanges with a behavior subject
+    // it does not work on page refresh. Therefore we merge the valuesChanges with a behavior subject
     // to kick of the todo filtering
     this.todos$ = this.store.select('todos').pipe(
       combineLatestWith(

@@ -1,29 +1,3 @@
-variable "resource_group" {
-  type = string
-}
-
-variable "location" {
-  type = string
-}
-
-variable "josi_architecture_webapi__outbound_ip_address_list" {
-  type = list(string)
-}
-
-data "azurerm_key_vault" "josi_architecture_key_vault" {
-  name                = "josi-arch-key-vault"
-  resource_group_name = var.resource_group
-}
-
-data "azurerm_key_vault_secret" "sql_server_administrator_login" {
-  name         = "sql-server-administrator-login"
-  key_vault_id = data.azurerm_key_vault.josi_architecture_key_vault.id
-}
-
-data "azurerm_key_vault_secret" "sql_server_administrator_password" {
-  name         = "sql-server-administrator-password"
-  key_vault_id = data.azurerm_key_vault.josi_architecture_key_vault.id
-}
 
 resource "azurerm_mssql_server" "josi_architecture_sql_server" {
   name                         = "josi-architecture-sql-server"
@@ -44,9 +18,9 @@ resource "azurerm_mssql_database" "josi_architecture_sql_database" {
 }
 
 resource "azurerm_mssql_firewall_rule" "josi_architecture_webapi_firewall_rule" {
-  for_each = toset(var.josi_architecture_webapi__outbound_ip_address_list)
+  for_each = toset(azurerm_windows_web_app.josi_architecture_webapi.outbound_ip_address_list)
 
-  name             = "josi-architecture-webapi-firewall-rule-${index(var.josi_architecture_webapi__outbound_ip_address_list, each.key)}"
+  name             = "josi-architecture-webapi-firewall-rule-${index(azurerm_windows_web_app.josi_architecture_webapi.outbound_ip_address_list, each.key)}"
   server_id        = azurerm_mssql_server.josi_architecture_sql_server.id
   start_ip_address = each.key
   end_ip_address   = each.key

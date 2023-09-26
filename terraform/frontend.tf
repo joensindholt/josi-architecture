@@ -1,11 +1,3 @@
-variable "resource_group" {
-  type = string
-}
-
-variable "angular_app_location" {
-  type = string
-}
-
 resource "azurerm_static_site" "josi_architecture_angular_site" {
   name                = "josi-architecture-angular-site"
   resource_group_name = var.resource_group

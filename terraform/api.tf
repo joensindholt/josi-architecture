@@ -1,30 +1,3 @@
-variable "resource_group" {
-  type = string
-}
-
-variable "location" {
-  type = string
-}
-
-variable "key_vault_name" {
-  type = string
-}
-
-data "azurerm_key_vault" "josi_architecture_key_vault" {
-  name                = var.key_vault_name
-  resource_group_name = var.resource_group
-}
-
-data "azurerm_key_vault_secret" "sql_server_administrator_login" {
-  name         = "sql-server-administrator-login"
-  key_vault_id = data.azurerm_key_vault.josi_architecture_key_vault.id
-}
-
-data "azurerm_key_vault_secret" "sql_server_administrator_password" {
-  name         = "sql-server-administrator-password"
-  key_vault_id = data.azurerm_key_vault.josi_architecture_key_vault.id
-}
-
 resource "azurerm_service_plan" "josi_architecture_service_plan" {
   name                = "josi-architecture-service-plan"
   resource_group_name = var.resource_group

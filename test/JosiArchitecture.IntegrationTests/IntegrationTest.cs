@@ -1,41 +1,32 @@
-﻿using JosiArchitecture.IntegrationTests;
+﻿// ReSharper disable ClassNeverInstantiated.Global
 
-namespace JosiArchitecture.UnitTests
+using JosiArchitecture.IntegrationTests.TestEnvironments;
+using Org.BouncyCastle.Pqc.Crypto.Lms;
+
+namespace JosiArchitecture.IntegrationTests;
+
+[CollectionDefinition("Integration tests collection")]
+public class IntegrationTestsCollection : ICollectionFixture<IntegrationTestFixture>
 {
-    [CollectionDefinition("Integration tests collection")]
-    public class IntegrationTestsCollection : ICollectionFixture<IntegrationTestFixture>
+    public const string Name = "Integration tests collection";
+}
+
+public class IntegrationTestFixture : IAsyncLifetime
+{
+    public HttpClient Client => _testEnvironment.Client;
+
+    public Bogus.Faker Faker => new();
+
+    private ITestEnvironment _testEnvironment = null!;
+
+    public async Task InitializeAsync()
     {
-        public const string Name = "Integration tests collection";
+        _testEnvironment = new ExternallyHostedEnvironment();
+        await _testEnvironment.InitializeAsync();
     }
 
-    public class IntegrationTestFixture : IAsyncLifetime
+    public async Task DisposeAsync()
     {
-        public TestEnvironment? TestEnvironment { get; private set; }
-
-        public HttpClient? Client => TestEnvironment?.Client;
-
-        public async Task InitializeAsync()
-        {
-            TestEnvironment = new TestEnvironment();
-            await TestEnvironment.InitializeAsync();
-        }
-
-        public async Task DisposeAsync()
-        {
-            if (TestEnvironment != null)
-            {
-                await TestEnvironment.DisposeAsync();
-            }
-        }
-
-        public async Task ResetDatabase()
-        {
-            if (TestEnvironment == null)
-            {
-                throw new InvalidOperationException("Cannot reset database before test environment has been initialized");
-            }
-
-            await TestEnvironment.ResetDatabaseAsync();
-        }
+        await _testEnvironment.DisposeAsync();
     }
 }

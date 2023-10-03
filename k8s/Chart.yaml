@@ -3,3 +3,12 @@ description: The chart
 version: 0.0.1
 apiVersion: v2
 
+dependencies:
+  - name: webapi
+    version: 1.0.0
+  - name: postgres
+    version: 1.0.0
+  - name: elasticsearch
+    version: 1.0.0
+  - name: kibana
+    version: 1.0.0

@@ -23,9 +23,10 @@ Boilerplate implementation of a web api and frontend using .NET 7 WebApi and Bla
 
 ## Database
 
-Update database
+Add migration and update database
 ```
 cd src\JosiArchitecture.Data
+dotnet ef migrations add [name] -s ..\JosiArchitecture.Api\JosiArchitecture.Api.csproj
 dotnet ef database update -s ..\JosiArchitecture.Api\JosiArchitecture.Api.csproj
 ```
 
@@ -52,11 +53,13 @@ kubectl stern "." -n sindholt-house
 ## Run in local kubernetes
 
 ```powershell
-minikube start # or minikube start --driver=podman --container-runtime=containerd
+minikube start    # or minikube start --driver=podman --container-runtime=containerd
+docker context use default
 docker build -t webapi -f .\src\JosiArchitecture.Api\Dockerfile .
 minikube image load webapi
 helm install josi .\k8s\
-minikube service webapi -n sindholt-house
+minikube service webapi -n josi
+helm uninstall josi
 ```
 
 See more regarding local kube images here: https://sweetcode.io/how-to-use-local-docker-images-in-kubernetes/

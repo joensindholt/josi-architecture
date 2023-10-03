@@ -1,18 +1,18 @@
-﻿using JosiArchitecture.IntegrationTests;
+﻿using JosiArchitecture.IntegrationTests.TestEnvironments;
 
 namespace JosiArchitecture.SpecFlowTests.Hooks
 {
     [Binding]
     public class Hooks
     {
-        private static TestEnvironment? _testEnvironment;
+        private static ITestEnvironment? _testEnvironment;
 
-        public static HttpClient? Client { get; private set; }
+        public static HttpClient Client { get; private set; } = null!;
 
         [BeforeTestRun]
         public static void BeforeTestRun()
         {
-            _testEnvironment = new TestEnvironment();
+            _testEnvironment = new ExternallyHostedEnvironment();
             _testEnvironment.InitializeAsync().Wait();
             Client = _testEnvironment.Client;
         }
@@ -20,7 +20,7 @@ namespace JosiArchitecture.SpecFlowTests.Hooks
         [AfterTestRun]
         public static void AfterTestRun()
         {
-            _testEnvironment?.DisposeAsync().AsTask().Wait();
+            _testEnvironment?.DisposeAsync().Wait();
         }
     }
 }

@@ -13,8 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1B17A3CC-802
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{CA0A10F7-C9DE-4483-8842-6F50C628F7FE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JosiArchitecture.BlazorApp", "src\JosiArchitecture.BlazorApp\JosiArchitecture.BlazorApp.csproj", "{8EED2F5E-C25B-4CE0-A562-2347C5E5DA3A}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JosiArchitecture.UnitTests", "test\JosiArchitecture.UnitTests\JosiArchitecture.UnitTests.csproj", "{6C945F2B-D7F2-4380-A056-A1C67A41A3EB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JosiArchitecture.IntegrationTests", "test\JosiArchitecture.IntegrationTests\JosiArchitecture.IntegrationTests.csproj", "{D81F3E80-A177-464A-83BA-96F3E6347285}"
@@ -29,6 +27,8 @@ EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{BBE4F54A-A8BC-4ADC-B30E-AAFE52D41659}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JosiArchitecture.SpecFlowTests", "test\JosiArchitecture.SpecFlowTests\JosiArchitecture.SpecFlowTests.csproj", "{E06D6AB6-4A64-42B3-B07F-8D1402F4E0D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JosiArchitecture.ElasticSearch", "src\JosiArchitecture.ElasticSearch\JosiArchitecture.ElasticSearch.csproj", "{E19257D5-BA09-498B-BF27-84B374958B45}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,10 +48,6 @@ Global
 		{72B56B5A-950C-4BB7-9777-1F867CD93B22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72B56B5A-950C-4BB7-9777-1F867CD93B22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72B56B5A-950C-4BB7-9777-1F867CD93B22}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8EED2F5E-C25B-4CE0-A562-2347C5E5DA3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8EED2F5E-C25B-4CE0-A562-2347C5E5DA3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8EED2F5E-C25B-4CE0-A562-2347C5E5DA3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8EED2F5E-C25B-4CE0-A562-2347C5E5DA3A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6C945F2B-D7F2-4380-A056-A1C67A41A3EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6C945F2B-D7F2-4380-A056-A1C67A41A3EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C945F2B-D7F2-4380-A056-A1C67A41A3EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -68,6 +64,10 @@ Global
 		{E06D6AB6-4A64-42B3-B07F-8D1402F4E0D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E06D6AB6-4A64-42B3-B07F-8D1402F4E0D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E06D6AB6-4A64-42B3-B07F-8D1402F4E0D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E19257D5-BA09-498B-BF27-84B374958B45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E19257D5-BA09-498B-BF27-84B374958B45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E19257D5-BA09-498B-BF27-84B374958B45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E19257D5-BA09-498B-BF27-84B374958B45}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,10 +76,10 @@ Global
 		{41883AAC-ACBD-436F-862A-BF429504A862} = {1B17A3CC-8026-49FB-9ED9-820440EF0AE2}
 		{A9B10932-8033-41AD-9952-9C56C47AED87} = {1B17A3CC-8026-49FB-9ED9-820440EF0AE2}
 		{72B56B5A-950C-4BB7-9777-1F867CD93B22} = {1B17A3CC-8026-49FB-9ED9-820440EF0AE2}
-		{8EED2F5E-C25B-4CE0-A562-2347C5E5DA3A} = {1B17A3CC-8026-49FB-9ED9-820440EF0AE2}
 		{6C945F2B-D7F2-4380-A056-A1C67A41A3EB} = {CA0A10F7-C9DE-4483-8842-6F50C628F7FE}
 		{D81F3E80-A177-464A-83BA-96F3E6347285} = {CA0A10F7-C9DE-4483-8842-6F50C628F7FE}
 		{E06D6AB6-4A64-42B3-B07F-8D1402F4E0D3} = {CA0A10F7-C9DE-4483-8842-6F50C628F7FE}
+		{E19257D5-BA09-498B-BF27-84B374958B45} = {1B17A3CC-8026-49FB-9ED9-820440EF0AE2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BF38D60C-4624-4FE1-A8D5-B5F8986AC780}

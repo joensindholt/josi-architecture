@@ -10,10 +10,13 @@ namespace JosiArchitecture.Core
     {
         public static void AddCoreServices(this IServiceCollection services)
         {
-            services.AddMediatR(Assembly.GetExecutingAssembly());
+            // MediatR
+            services.AddMediatR(cfg => { cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()); });
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
-            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly(), ServiceLifetime.Scoped);
+
+            // Fluent Validation
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
 }

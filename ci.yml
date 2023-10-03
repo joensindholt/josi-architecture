@@ -1,85 +1,85 @@
-stages:
-  - stage: Provision
-    variables:
-      - name: angular_site_api_key
-        value: initial_angular_site_api_key
-    jobs:
-      - job: Provision
-        when: manual
-        variables:
-          - group: Terraform
-        steps:
-          - task: PowerShell@2
-            displayName: 'Install terragrunt'
-            inputs:
-              targetType: 'inline'
-              script: |
-                wget https://github.com/gruntwork-io/terragrunt/releases/download/v0.42.3/terragrunt_linux_amd64
-                mv terragrunt_linux_amd64 terragrunt
-                chmod u+x terragrunt
-                sudo mv terragrunt /usr/local/bin/terragrunt
-          - task: PowerShell@2
-            displayName: 'Apply terraform configuration'
-            name: terraform
-            inputs:
-              targetType: 'inline'
-              script: |
-                cd terraform
-                terragrunt run-all init --terragrunt-non-interactive -input=false
-                terragrunt run-all apply --terragrunt-non-interactive -auto-approve
-                cd frontend; Write-Host "##vso[task.setvariable variable=angular_site_api_key;isOutput=true]$((terraform output angular_site_api_key).Trim().Replace('"', ''))"
-  - stage: Api
-    jobs:
-      - job: Test
-        when: manual
-        displayName: Run Specflow Tests
-        steps:
-          - task: DotNetCoreCLI@2
-            inputs:
-              command: 'test'
-              projects: 'test/JosiArchitecture.SpecFlowTests/JosiArchitecture.SpecFlowTests.csproj'
-      - job: PublishAndDeploy
-        when: manual
-        displayName: 'Build and deploy Api'
-        steps:
-          - task: DotNetCoreCLI@2
-            displayName: 'Publish the Api project'
-            inputs:
-              command: 'publish'
-              publishWebProjects: false
-              projects: 'src/JosiArchitecture.Api/JosiArchitecture.Api.csproj'
-              arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
-              zipAfterPublish: True
-          - task: PublishBuildArtifacts@1
-            displayName: 'Publish build artifact'
-            inputs:
-              pathToPublish: '$(Build.ArtifactStagingDirectory)'
-              artifactName: 'drop'
-              publishLocation: 'Container'
-          - task: AzureRmWebAppDeployment@4
-            displayName: 'Deploy Api to Azure App Service'
-            inputs:
-              azureSubscription: 'Betalt efter forbrug(fd949dc3-162d-4991-a986-02631830a313)'
-              appType: 'webApp'
-              webAppName: 'josi-architecture-webapi'
-              package: '$(Build.ArtifactStagingDirectory)/**/JosiArchitecture.Api.zip'
-  - stage: Angular
-    dependsOn: Provision
-    variables:
-      angular_site_api_key: $[ stageDependencies.Provision.Provision.outputs['terraform.angular_site_api_key'] ]
-    jobs:
-      - job: Angular
-        when: manual
-        displayName: Build and deploy Angular app
-        steps:
-          - task: PowerShell@2
-            inputs:
-              targetType: 'inline'
-              script: |
-                echo "Deploying to static web app using token:"
-                echo $(angular_site_api_key)
-          - task: AzureStaticWebApp@0
-            inputs:
-              azure_static_web_apps_api_token: $(angular_site_api_key)
-              app_location: '/src/JosiArchitecture.AngularApp'
-              output_location: '/dist/josi-architecture.angular-app'
+#stages:
+#  - stage: Provision
+#    variables:
+#      - name: angular_site_api_key
+#        value: initial_angular_site_api_key
+#    jobs:
+#      - job: Provision
+#        when: manual
+#        variables:
+#          - group: Terraform
+#        steps:
+#          - task: PowerShell@2
+#            displayName: 'Install terragrunt'
+#            inputs:
+#              targetType: 'inline'
+#              script: |
+#                wget https://github.com/gruntwork-io/terragrunt/releases/download/v0.42.3/terragrunt_linux_amd64
+#                mv terragrunt_linux_amd64 terragrunt
+#                chmod u+x terragrunt
+#                sudo mv terragrunt /usr/local/bin/terragrunt
+#          - task: PowerShell@2
+#            displayName: 'Apply terraform configuration'
+#            name: terraform
+#            inputs:
+#              targetType: 'inline'
+#              script: |
+#                cd terraform
+#                terragrunt run-all init --terragrunt-non-interactive -input=false
+#                terragrunt run-all apply --terragrunt-non-interactive -auto-approve
+#                cd frontend; Write-Host "##vso[task.setvariable variable=angular_site_api_key;isOutput=true]$((terraform output angular_site_api_key).Trim().Replace('"', ''))"
+#  - stage: Api
+#    jobs:
+#      - job: Test
+#        when: manual
+#        displayName: Run Specflow Tests
+#        steps:
+#          - task: DotNetCoreCLI@2
+#            inputs:
+#              command: 'test'
+#              projects: 'test/JosiArchitecture.SpecFlowTests/JosiArchitecture.SpecFlowTests.csproj'
+#      - job: PublishAndDeploy
+#        when: manual
+#        displayName: 'Build and deploy Api'
+#        steps:
+#          - task: DotNetCoreCLI@2
+#            displayName: 'Publish the Api project'
+#            inputs:
+#              command: 'publish'
+#              publishWebProjects: false
+#              projects: 'src/JosiArchitecture.Api/JosiArchitecture.Api.csproj'
+#              arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+#              zipAfterPublish: True
+#          - task: PublishBuildArtifacts@1
+#            displayName: 'Publish build artifact'
+#            inputs:
+#              pathToPublish: '$(Build.ArtifactStagingDirectory)'
+#              artifactName: 'drop'
+#              publishLocation: 'Container'
+#          - task: AzureRmWebAppDeployment@4
+#            displayName: 'Deploy Api to Azure App Service'
+#            inputs:
+#              azureSubscription: 'Betalt efter forbrug(fd949dc3-162d-4991-a986-02631830a313)'
+#              appType: 'webApp'
+#              webAppName: 'josi-architecture-webapi'
+#              package: '$(Build.ArtifactStagingDirectory)/**/JosiArchitecture.Api.zip'
+#  - stage: Angular
+#    dependsOn: Provision
+#    variables:
+#      angular_site_api_key: $[ stageDependencies.Provision.Provision.outputs['terraform.angular_site_api_key'] ]
+#    jobs:
+#      - job: Angular
+#        when: manual
+#        displayName: Build and deploy Angular app
+#        steps:
+#          - task: PowerShell@2
+#            inputs:
+#              targetType: 'inline'
+#              script: |
+#                echo "Deploying to static web app using token:"
+#                echo $(angular_site_api_key)
+#          - task: AzureStaticWebApp@0
+#            inputs:
+#              azure_static_web_apps_api_token: $(angular_site_api_key)
+#              app_location: '/src/JosiArchitecture.AngularApp'
+#              output_location: '/dist/josi-architecture.angular-app'

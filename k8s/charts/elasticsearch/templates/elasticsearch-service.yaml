@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: elasticsearch
+  name: elasticsearch
+  namespace: josi
+spec:
+  type: NodePort
+  ports:
+    - name: http
+      protocol: TCP
+      port: 9200
+      targetPort: 9200
+      nodePort: 32092
+    - name: http2
+      protocol: TCP
+      port: 9300
+      targetPort: 9300
+      nodePort: 32093
+  selector:
+    service: elasticsearch

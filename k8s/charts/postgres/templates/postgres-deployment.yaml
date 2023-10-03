@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: postgres
+  name: postgres
+  namespace: josi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: postgres
+  strategy: { }
+  template:
+    metadata:
+      labels:
+        network/josi-architecture-default: "true"
+        service: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres
+          ports:
+            - containerPort: 5432
+              hostPort: 5432
+              protocol: TCP
+          resources: { }
+          env:
+            - name: POSTGRES_PASSWORD
+              value: "letmepass!!42"
+      restartPolicy: Always

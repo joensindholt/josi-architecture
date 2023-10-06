@@ -4,7 +4,7 @@
   "sourceRoot": "apps/api",
   "projectType": "application",
   "targets": {
-    "setup": {
+    "up": {
       "executor": "nx:run-commands",
       "options": {
         "cwd": "apps/api",
@@ -35,6 +35,17 @@
         }
       },
       "defaultConfiguration": "production"
+    },
+    "down": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/api",
+        "commands": [
+          "docker-compose down",
+          "docker-compose rm"
+        ],
+        "color": true
+      }
     }
   },
   "tags": []

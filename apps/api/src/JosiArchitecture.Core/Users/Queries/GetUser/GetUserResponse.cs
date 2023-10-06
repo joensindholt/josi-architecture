@@ -4,35 +4,16 @@ namespace JosiArchitecture.Core.Users.Queries.GetUser;
 
 public class GetUserResponse
 {
-    public long Id { get; init; }
+    public required long Id { get; init; }
 
-    public string Name { get; init; } = null!;
+    public required string Name { get; init; }
 
-    public IEnumerable<Profile> Profiles { get; init; } = new List<Profile>();
+    public required IEnumerable<Profile> Profiles { get; init; }
 
     public class Profile
     {
-        public int Id { get; init; }
+        public required int Id { get; init; }
 
-        public string Title { get; init; } = null!;
-
-        public static Profile FromProfile(Users.Profile profile)
-        {
-            return new Profile
-            {
-                Id = profile.Id,
-                Title = profile.Title
-            };
-        }
-    }
-
-    public static GetUserResponse FromUser(User user)
-    {
-        return new GetUserResponse
-        {
-            Id = user.Id,
-            Name = user.Name,
-            Profiles = user.Profiles.Select(Profile.FromProfile)
-        };
+        public required string Title { get; init; }
     }
 }

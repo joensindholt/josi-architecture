@@ -9,11 +9,13 @@ namespace JosiArchitecture.SpecFlowTests.StepDefinitions
     [Binding]
     public sealed class UsersStepDefinitions
     {
+        private const string UsersEndpoint = "/users";
+
         [Given("I add a user named '(.*)'")]
         public async Task AddAUserNamed(string name)
         {
             await Hooks.Hooks.Client.PostAsJsonAsync(
-                "/users",
+                UsersEndpoint,
                 new CreateUserRequest
                 {
                     Name = name
@@ -27,7 +29,7 @@ namespace JosiArchitecture.SpecFlowTests.StepDefinitions
             var users = await EventualConsistencyHelper.ExecuteAsync(
                 async cancellationToken =>
                 {
-                    var httpResponse = await Hooks.Hooks.Client.GetAsync("/users", cancellationToken);
+                    var httpResponse = await Hooks.Hooks.Client.GetAsync(UsersEndpoint, cancellationToken);
                     var usersResponse = await httpResponse.Content.ReadAsAsync<GetUsersResponse>();
                     var users = usersResponse.Users.ToList();
                     return users;

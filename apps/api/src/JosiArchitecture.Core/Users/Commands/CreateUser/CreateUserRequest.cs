@@ -10,7 +10,7 @@ namespace JosiArchitecture.Core.Users.Commands.CreateUser;
 
 public class CreateUserRequest : IRequest<int>
 {
-    public string? Name { get; set; }
+    public required string Name { get; init; }
 }
 
 public class CreateUserHandler : IRequestHandler<CreateUserRequest, int>

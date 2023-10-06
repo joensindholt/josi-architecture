@@ -1,52 +1,63 @@
 {
-  "name": "api",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/api",
-  "projectType": "application",
-  "targets": {
-    "up": {
-      "executor": "nx:run-commands",
-      "options": {
-        "cwd": "apps/api",
-        "command": "docker-compose up",
-        "color": true
-      }
-    },
-    "serve": {
-      "executor": "nx:run-commands",
-      "options": {
-        "cwd": "apps/api",
-        "command": "dotnet watch --project .\\src\\JosiArchitecture.Api\\JosiArchitecture.Api.csproj",
-        "color": true
-      }
-    },
-    "build": {
-      "executor": "nx:run-commands",
-      "options": {
-        "cwd": "apps/api",
-        "color": true
-      },
-      "configurations": {
-        "production": {
-          "command": "dotnet publish .\\src\\JosiArchitecture.Api\\JosiArchitecture.Api.csproj -o ..\\..\\dist\\apps\\api -c Release "
+    "name": "api",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "apps/api",
+    "projectType": "application",
+    "targets": {
+        "up": {
+            "executor": "nx:run-commands",
+            "options": {
+                "cwd": "apps/api",
+                "command": "docker-compose up",
+                "color": true
+            }
         },
-        "development": {
-          "command": "dotnet publish .\\src\\JosiArchitecture.Api\\JosiArchitecture.Api.csproj -o ..\\..\\dist\\apps\\api -c Debug"
+        "serve": {
+            "executor": "nx:run-commands",
+            "options": {
+                "cwd": "apps/api",
+                "command": "dotnet watch --project .\\src\\JosiArchitecture.Api\\JosiArchitecture.Api.csproj",
+                "color": true
+            }
+        },
+        "build": {
+            "executor": "nx:run-commands",
+            "options": {
+                "cwd": "apps/api",
+                "color": true
+            },
+            "configurations": {
+                "production": {
+                    "command": "dotnet publish .\\src\\JosiArchitecture.Api\\JosiArchitecture.Api.csproj -o ..\\..\\dist\\apps\\api -c Release "
+                },
+                "development": {
+                    "command": "dotnet publish .\\src\\JosiArchitecture.Api\\JosiArchitecture.Api.csproj -o ..\\..\\dist\\apps\\api -c Debug"
+                }
+            },
+            "defaultConfiguration": "production"
+        },
+        "test": {
+            "executor": "nx:run-commands",
+            "options": {
+                "cwd": "apps/api",
+                "color": true,
+                "commands": [
+                    "dotnet test .\\test\\JosiArchitecture.IntegrationTests\\JosiArchitecture.IntegrationTests.csproj",
+                    "dotnet test .\\test\\JosiArchitecture.SpecFlowTests\\JosiArchitecture.SpecFlowTests.csproj"
+                ]
+            }
+        },
+        "down": {
+            "executor": "nx:run-commands",
+            "options": {
+                "cwd": "apps/api",
+                "commands": [
+                    "docker-compose down",
+                    "docker-compose rm"
+                ],
+                "color": true
+            }
         }
-      },
-      "defaultConfiguration": "production"
     },
-    "down": {
-      "executor": "nx:run-commands",
-      "options": {
-        "cwd": "apps/api",
-        "commands": [
-          "docker-compose down",
-          "docker-compose rm"
-        ],
-        "color": true
-      }
-    }
-  },
-  "tags": []
+    "tags": []
 }

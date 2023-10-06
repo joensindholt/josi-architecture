@@ -2,23 +2,12 @@
 
 public class GetUsersResponse
 {
-    public GetUsersResponse(IEnumerable<User> users)
-    {
-        Users = users;
-    }
-
-    public IEnumerable<User> Users { get; }
+    public required IEnumerable<User> Users { get; init; }
 
     public class User
     {
-        public User(long id, string name)
-        {
-            Id = id;
-            Name = name;
-        }
+        public required long Id { get; init; }
 
-        public long Id { get; }
-
-        public string Name { get; }
+        public required string Name { get; init; }
     }
 }

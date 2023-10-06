@@ -33,7 +33,9 @@ namespace JosiArchitecture.Api.Controllers
         public async Task<ActionResult<GetUserResponse>> GetUser(int id)
         {
             var response = await _mediator.Send(new GetUserRequest(id));
-            return response != null ? Ok(response) : NotFound();
+            return response.Match<ActionResult<GetUserResponse>>(
+                userResponse => Ok(userResponse),
+                _ => NotFound());
         }
 
         [HttpPost]

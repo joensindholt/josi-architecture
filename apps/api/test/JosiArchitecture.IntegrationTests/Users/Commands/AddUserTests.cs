@@ -9,6 +9,8 @@ namespace JosiArchitecture.IntegrationTests.Users.Commands;
 [Collection(IntegrationTestsCollection.Name)]
 public class AddUserTests
 {
+    private const string UsersEndpoint = "/users";
+
     private readonly IntegrationTestFixture _fixture;
 
     public AddUserTests(IntegrationTestFixture fixture)
@@ -24,7 +26,7 @@ public class AddUserTests
 
         // Act
         var response = await _fixture.Client.PostAsJsonAsync(
-            "/users",
+            UsersEndpoint,
             new CreateUserRequest
             {
                 Name = name
@@ -43,10 +45,10 @@ public class AddUserTests
 
         // Act
         var response = await _fixture.Client.PostAsJsonAsync(
-            "/users",
+            UsersEndpoint,
             new CreateUserRequest
             {
-                Name = name
+                Name = name!
             },
             CancellationToken.None);
 

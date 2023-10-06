@@ -1,9 +1,9 @@
-﻿using JosiArchitecture.Core.Shared.Persistence;
+﻿// ReSharper disable UnusedType.Global
+// ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
+
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Linq.Dynamic.Core;
 using JosiArchitecture.Core.Search;
 
 namespace JosiArchitecture.Core.Users.Queries.GetUsers;
@@ -15,19 +15,17 @@ public class GetUsersRequest : IRequest<GetUsersResponse>
 
 public class GetUsersHandler : IRequestHandler<GetUsersRequest, GetUsersResponse>
 {
-    private readonly IApplicationDbContext _db;
     private readonly ISearchService _searchService;
 
-    public GetUsersHandler(IApplicationDbContext db, ISearchService searchService)
+    public GetUsersHandler(ISearchService searchService)
     {
-        _db = db;
         _searchService = searchService;
     }
 
     public async Task<GetUsersResponse> Handle(GetUsersRequest request, CancellationToken cancellationToken)
     {
         var users = await _searchService.QueryUsersAsync(request.OrderBy, cancellationToken);
-        var response = new GetUsersResponse(users.Select(u => new GetUsersResponse.User(u.Id, u.Name)));
+        var response = users.MapToGetUsersResponse();
         return await Task.FromResult(response);
     }
 }

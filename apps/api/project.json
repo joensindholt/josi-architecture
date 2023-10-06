@@ -1,0 +1,33 @@
+{
+  "name": "api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/api",
+  "projectType": "application",
+  "targets": {
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/api",
+        "commands": [
+          "docker-compose up",
+          "dotnet watch --project .\\src\\JosiArchitecture.Api\\JosiArchitecture.Api.csproj"
+        ]
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/api",
+        "command": "dotnet build .\\src\\JosiArchitecture.Api\\JosiArchitecture.Api.csproj"
+      }
+    },
+    "publish": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/api",
+        "command": "dotnet publish .\\src\\JosiArchitecture.Api\\JosiArchitecture.Api.csproj -o ..\\..\\dist\\apps\\api -c Release"
+      }
+    }
+  },
+  "tags": []
+}

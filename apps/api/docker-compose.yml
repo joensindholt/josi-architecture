@@ -1,0 +1,83 @@
+networks:
+  elastic:
+    driver: bridge
+
+services:
+  webapi:
+    build:
+      context: .
+      dockerfile: src/JosiArchitecture.Api/Dockerfile
+    depends_on:
+      postgres:
+        condition: service_healthy
+        restart: true
+      elasticsearch:
+        condition: service_started
+        restart: true
+    networks:
+      - default
+      - elastic
+    ports:
+      - "8000:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+
+  ###################################################
+  # Databases
+  ###################################################
+
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: letmepass!!42
+      POSTGRES_INITDB_ARGS: "--locale-provider=icu --icu-locale=da_DK"
+    networks:
+      - default
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 2s
+      timeout: 5s
+      retries: 5
+
+  #  sqlserver:
+  #    image: mcr.microsoft.com/mssql/server:2019-latest
+  #    ports:
+  #      - "1433:1433"
+  #    environment:
+  #      - ACCEPT_EULA=Y
+  #      - SA_PASSWORD=letmepass!!42
+  #      - MSSQL_PID=Developer
+
+  ###################################################
+  # ELK Stack for monitoring
+  ###################################################
+
+  elasticsearch:
+    build:
+      context: ./docker/elasticsearch
+      dockerfile: ../../docker/elasticsearch/Dockerfile
+    # image: elasticsearch:8.10.2
+    networks:
+      - elastic
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      discovery.type: "single-node"
+      xpack.security.enabled: false
+      xpack.security.enrollment.enabled: false
+
+  kibana:
+    image: kibana:8.10.2
+    depends_on:
+      elasticsearch:
+        condition: service_started
+        restart: true
+    networks:
+      - elastic
+    ports:
+      - "5601:5601"

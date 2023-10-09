@@ -1,9 +1,11 @@
 <div class="layout">
-  <div class="left-menu">
+  <div class="left-menu border-end d-none d-md-block">
     <app-menu></app-menu>
   </div>
-  <div class="main-content p-3">
+  <div class="top-bar border-bottom">
     <app-nav-bar-top></app-nav-bar-top>
+  </div>
+  <div class="main-content px-5 py-4 bg-body-tertiary">
     <router-outlet></router-outlet>
   </div>
 </div>

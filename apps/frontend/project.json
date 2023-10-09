@@ -2,7 +2,7 @@
   "name": "frontend",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "josi-architecture-x",
+  "prefix": "app",
   "sourceRoot": "apps/frontend/src",
   "tags": [],
   "targets": {
@@ -24,9 +24,14 @@
           "apps/frontend/src/assets"
         ],
         "styles": [
-          "apps/frontend/src/styles.scss"
+          "apps/frontend/src/styles/styles.scss"
         ],
-        "scripts": []
+        "scripts": [],
+        "stylePreprocessorOptions": {
+          "includePaths": [
+            "node_modules"
+          ]
+        }
       },
       "configurations": {
         "production": {

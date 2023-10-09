@@ -1,0 +1,18 @@
+.layout {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr;
+}
+
+.left-menu {
+  height: 100vh;
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.main-content {
+  grid-column: 2;
+  grid-row: 1;
+  overflow: auto;
+}

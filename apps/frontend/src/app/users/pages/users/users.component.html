@@ -1,0 +1,63 @@
+<h3 class="m-6 pb-4 border-bottom fw-bold">Users</h3>
+
+<div class="users p-6">
+  <div class="card">
+    <div class="bg-white py-4 card-header">
+      <h4 class="mb-0">Active users</h4>
+    </div>
+    <div class="table-responsive">
+      <table class="text-nowrap table">
+        <thead class="table-light">
+          <tr>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Last Activity</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users$ | async">
+            <td class="align-middle">
+              <div class="d-flex align-items-center">
+                <div>
+                  <img
+                    src="/images/avatar/avatar-2.jpg"
+                    alt=""
+                    class="avatar-md avatar rounded-circle"
+                  />
+                </div>
+                <div class="ms-3 lh-1">
+                  <h5 class="mb-1">{{ user.name }}</h5>
+                  <p class="mb-0">{{ user.name | lowercase }}@example.com</p>
+                </div>
+              </div>
+            </td>
+            <td class="align-middle">Front End Developer</td>
+            <td class="align-middle">3 May, 2023</td>
+            <td class="align-middle">
+              <div class="dropdown">
+                <a class="text-muted text-primary-hover" href="/"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="15px"
+                    height="15px"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="text-muted"
+                  >
+                    <circle cx="12" cy="12" r="1"></circle>
+                    <circle cx="12" cy="5" r="1"></circle>
+                    <circle cx="12" cy="19" r="1"></circle></svg
+                ></a>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

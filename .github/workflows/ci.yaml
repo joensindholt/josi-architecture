@@ -1,21 +1,17 @@
 name: CICD
 on: push
 jobs:
-  install:
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - run: npm install -g pnpm
-      - run: pwd
-      - run: ls -la
-      - run: pnpm install
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - run: npx nx run-many -t lint
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - run: npx nx run-many -t build
-
+      - name: Install pnpm
+        run: npm install -g pnpm
+      - name: Install pnpm packages
+        run: pnpm install
+      - name: Lint
+        run: npx nx run-many -t lint
+      - name: Build
+        run: npx nx run-many -t build

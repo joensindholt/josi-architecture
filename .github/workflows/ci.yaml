@@ -1,0 +1,17 @@
+name: CICD
+on: [push]
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - run: npm install -g pnpm
+      - run: pnpm install
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - run: npx nx run-many -t lint
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: npx nx run-many -t build
+

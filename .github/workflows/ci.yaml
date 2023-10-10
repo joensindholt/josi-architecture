@@ -5,6 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: npm install -g pnpm
+      - run: ls -la
       - run: pnpm install
   lint:
     runs-on: ubuntu-latest

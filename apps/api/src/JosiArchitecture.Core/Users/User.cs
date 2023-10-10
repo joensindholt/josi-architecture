@@ -1,4 +1,4 @@
-﻿// ReSharper disable UnassignedGetOnlyAutoProperty
+// ReSharper disable UnassignedGetOnlyAutoProperty
 
 using JosiArchitecture.Core.Shared.Model;
 
@@ -12,7 +12,7 @@ namespace JosiArchitecture.Core.Users
             _profiles = new List<Profile>();
         }
 
-        public int Id { get; private set;}
+        public int Id { get; private set; }
 
         public string Name { get; private set; }
 

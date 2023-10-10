@@ -1,4 +1,4 @@
-﻿using JosiArchitecture.Core.Users.Queries.GetUser;
+using JosiArchitecture.Core.Users.Queries.GetUser;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

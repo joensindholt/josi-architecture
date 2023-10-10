@@ -1,4 +1,4 @@
-﻿using JosiArchitecture.Core.Shared.Persistence;
+using JosiArchitecture.Core.Shared.Persistence;
 using JosiArchitecture.Core.Users;
 using JosiArchitecture.Data.Configuration;
 using Microsoft.EntityFrameworkCore;

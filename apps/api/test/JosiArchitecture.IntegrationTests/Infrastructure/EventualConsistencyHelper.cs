@@ -6,7 +6,7 @@ namespace JosiArchitecture.IntegrationTests.Infrastructure;
 public static class EventualConsistencyHelper
 {
     static ResiliencePipeline _pipeline = new ResiliencePipelineBuilder()
-        .AddRetry(new RetryStrategyOptions { Delay = TimeSpan.FromMilliseconds(100), MaxRetryAttempts = 10})
+        .AddRetry(new RetryStrategyOptions { Delay = TimeSpan.FromMilliseconds(100), MaxRetryAttempts = 10 })
         .Build();
 
     public static async ValueTask<TResult> ExecuteAsync<TResult>(Func<CancellationToken, ValueTask<TResult>> getter, Func<TResult, bool> checker)

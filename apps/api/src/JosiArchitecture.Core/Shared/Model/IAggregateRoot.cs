@@ -1,4 +1,4 @@
-﻿namespace JosiArchitecture.Core.Shared.Model
+namespace JosiArchitecture.Core.Shared.Model
 {
     /// <summary>
     /// Aggregate roots are the ones stored and fetched from the datastore

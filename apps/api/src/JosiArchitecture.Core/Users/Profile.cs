@@ -1,4 +1,4 @@
-﻿// ReSharper disable UnassignedGetOnlyAutoProperty
+// ReSharper disable UnassignedGetOnlyAutoProperty
 
 using JosiArchitecture.Core.Shared.Model;
 using JosiArchitecture.Core.Users.Queries.GetUser;

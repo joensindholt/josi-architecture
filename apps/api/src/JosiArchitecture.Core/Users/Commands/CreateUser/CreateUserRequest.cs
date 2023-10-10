@@ -1,4 +1,4 @@
-﻿// ReSharper disable UnusedType.Global
+// ReSharper disable UnusedType.Global
 
 using System.Threading;
 using System.Threading.Tasks;

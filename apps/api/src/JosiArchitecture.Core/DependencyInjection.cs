@@ -1,4 +1,4 @@
-﻿using JosiArchitecture.Core.Shared.Behaviors;
+using JosiArchitecture.Core.Shared.Behaviors;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;

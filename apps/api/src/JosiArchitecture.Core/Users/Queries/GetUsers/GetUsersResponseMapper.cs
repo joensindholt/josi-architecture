@@ -1,4 +1,4 @@
-﻿using JosiArchitecture.Core.Search;
+using JosiArchitecture.Core.Search;
 
 namespace JosiArchitecture.Core.Users.Queries.GetUsers;
 

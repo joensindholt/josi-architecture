@@ -1,4 +1,4 @@
-﻿namespace JosiArchitecture.Core.Shared.Model
+namespace JosiArchitecture.Core.Shared.Model
 {
     public interface IEntity
     {

@@ -1,4 +1,4 @@
-﻿// ReSharper disable ClassNeverInstantiated.Global
+// ReSharper disable ClassNeverInstantiated.Global
 
 using JosiArchitecture.IntegrationTests.TestEnvironments;
 using Org.BouncyCastle.Pqc.Crypto.Lms;

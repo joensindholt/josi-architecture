@@ -1,4 +1,4 @@
-﻿using JosiArchitecture.IntegrationTests.TestEnvironments;
+using JosiArchitecture.IntegrationTests.TestEnvironments;
 
 namespace JosiArchitecture.SpecFlowTests.Hooks
 {

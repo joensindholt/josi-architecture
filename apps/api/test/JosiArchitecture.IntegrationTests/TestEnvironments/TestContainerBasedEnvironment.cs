@@ -1,4 +1,4 @@
-﻿// using JosiArchitecture.Api;
+// using JosiArchitecture.Api;
 // using JosiArchitecture.Data;
 // using Microsoft.AspNetCore.Mvc.Testing;
 // using Microsoft.AspNetCore.TestHost;

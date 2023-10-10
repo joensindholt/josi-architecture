@@ -1,4 +1,4 @@
-﻿namespace JosiArchitecture.Core.Users.Queries.GetUsers;
+namespace JosiArchitecture.Core.Users.Queries.GetUsers;
 
 public class GetUsersResponse
 {

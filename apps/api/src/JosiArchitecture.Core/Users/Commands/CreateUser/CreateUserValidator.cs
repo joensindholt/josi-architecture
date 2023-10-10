@@ -1,4 +1,4 @@
-﻿using FluentValidation;
+using FluentValidation;
 
 namespace JosiArchitecture.Core.Users.Commands.CreateUser;
 

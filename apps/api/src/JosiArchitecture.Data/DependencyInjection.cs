@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Reflection;
 using JosiArchitecture.Core.Shared.Persistence;
 using JosiArchitecture.Data.Configuration;

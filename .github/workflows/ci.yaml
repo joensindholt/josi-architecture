@@ -12,6 +12,6 @@ jobs:
       - name: Install pnpm packages
         run: pnpm install
       - name: Lint
-        run: npx nx run-many -t lint
+        run: npx nx run-many -t lint --verbose
       - name: Build
-        run: npx nx run-many -t build
+        run: npx nx run-many -t build  --verbose

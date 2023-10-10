@@ -1,4 +1,4 @@
-﻿using Azure.Identity;
+using Azure.Identity;
 using JosiArchitecture.Api.Shared.ErrorHandling;
 using JosiArchitecture.Core;
 using JosiArchitecture.Data;

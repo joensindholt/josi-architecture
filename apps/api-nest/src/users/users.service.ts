@@ -1,5 +1,5 @@
 import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
-import { Db, Document, Filter, FindOptions, ObjectId, WithId } from 'mongodb';
+import { Db, Document, ObjectId, WithId } from 'mongodb';
 
 import { CreateUserRequest, UpdateUserRequest, User } from './user';
 import { AppConfigService } from '../configuration/app-config-service';

@@ -57,7 +57,22 @@
                 ],
                 "color": true
             }
-        }
+        },
+        "format": {
+            "executor": "nx:run-commands",
+            "options": {
+                "cwd": "apps/api",
+                "commands": [
+                    "dotnet format .\\src\\JosiArchitecture.Api\\JosiArchitecture.Api.csproj",
+                    "dotnet format .\\src\\JosiArchitecture.Core\\JosiArchitecture.Core.csproj",
+                    "dotnet format .\\src\\JosiArchitecture.Data\\JosiArchitecture.Data.csproj",
+                    "dotnet format .\\test\\JosiArchitecture.IntegrationTests\\JosiArchitecture.IntegrationTests.csproj",
+                    "dotnet format .\\test\\JosiArchitecture.SpecFlowTests\\JosiArchitecture.SpecFlowTests.csproj",
+                    "dotnet format .\\test\\JosiArchitecture.UnitTests\\JosiArchitecture.UnitTests.csproj"
+                ],
+                "color": true
+            }
+        },
     },
     "tags": []
 }

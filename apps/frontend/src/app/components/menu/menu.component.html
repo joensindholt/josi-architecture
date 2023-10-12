@@ -1,41 +1,20 @@
 <div class="d-flex flex-column flex-shrink-0 p-3 h-100" style="width: 280px">
-  <a
-    href="/"
-    class="d-flex align-items-center ms-2 mb-md-4 me-md-auto link-body-emphasis text-decoration-none"
-  >
+  <a href="/" class="d-flex align-items-center ms-2 mb-md-4 me-md-auto link-body-emphasis text-decoration-none">
     <i class="bi-bootstrap me-2 fs-2"></i>
     <span class="fs-4">JosiArchitecture</span>
   </a>
   <div class="text-uppercase text-secondary mb-3">Main menu</div>
   <ul class="nav nav-pills flex-column mb-auto">
     <li class="nav-item">
-      <a href="#" class="nav-link active" aria-current="page">
+      <a [routerLink]="['/']" class="nav-link active" aria-current="page">
         <i class="bi-house me-2"></i>
-        Home
+        <span>Users</span>
       </a>
     </li>
     <li>
-      <a href="#" class="nav-link link-body-emphasis">
+      <a [routerLink]="['/other']" href="#" class="nav-link">
         <i class="bi-speedometer2 me-2"></i>
-        Dashboard
-      </a>
-    </li>
-    <li>
-      <a href="#" class="nav-link link-body-emphasis">
-        <i class="bi-table me-2"></i>
-        Orders
-      </a>
-    </li>
-    <li>
-      <a href="#" class="nav-link link-body-emphasis">
-        <i class="bi-grid me-2"></i>
-        Products
-      </a>
-    </li>
-    <li>
-      <a href="#" class="nav-link link-body-emphasis">
-        <i class="bi-people me-2"></i>
-        Customers
+        <span>Other page</span>
       </a>
     </li>
   </ul>

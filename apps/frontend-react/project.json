@@ -1,0 +1,102 @@
+{
+  "name": "frontend-react",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/frontend-react/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/frontend-react",
+        "index": "apps/frontend-react/src/index.html",
+        "baseHref": "/",
+        "main": "apps/frontend-react/src/main.tsx",
+        "tsConfig": "apps/frontend-react/tsconfig.app.json",
+        "assets": [
+          "apps/frontend-react/src/favicon.ico",
+          "apps/frontend-react/src/assets"
+        ],
+        "styles": [
+          "apps/frontend-react/src/styles.scss"
+        ],
+        "scripts": [],
+        "isolatedConfig": true,
+        "webpackConfig": "apps/frontend-react/webpack.config.js"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/frontend-react/src/environments/environment.ts",
+              "with": "apps/frontend-react/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/webpack:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "frontend-react:build",
+        "hmr": true,
+        "port": 4201,
+        "ssl": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "frontend-react:build:development"
+        },
+        "production": {
+          "buildTarget": "frontend-react:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "apps/frontend-react/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "apps/frontend-react/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

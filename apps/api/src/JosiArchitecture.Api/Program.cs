@@ -22,6 +22,8 @@ namespace JosiArchitecture.Api
 {
     public class Program
     {
+        const string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
@@ -47,6 +49,18 @@ namespace JosiArchitecture.Api
             // Api services
             builder.Services.AddApiServices();
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins, policy =>
+                {
+                    policy.AllowAnyHeader();
+                    policy.AllowAnyMethod();
+                    policy.AllowAnyOrigin();
+                });
+            });
+
+
+            // Other services
             builder.Services.AddSingleton<ISearchService>(provider =>
             {
                 var options = provider.GetRequiredService<IOptions<ElasticSearchServiceOptions>>();
@@ -57,6 +71,7 @@ namespace JosiArchitecture.Api
 
             builder.Services.AddHostedService<DatabaseMigrator>();
 
+            // Build the app
             var app = builder.Build();
 
             app.UseSwagger();
@@ -69,6 +84,8 @@ namespace JosiArchitecture.Api
             app.UseHttpsRedirection();
 
             app.UseApplicationErrorHandling();
+
+            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseAuthorization();
 

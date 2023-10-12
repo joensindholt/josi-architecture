@@ -6,6 +6,7 @@ This project aims to present various techniques for using different frameworks/t
 - .NET7 Api (https://learn.microsoft.com/en-us/aspnet/core/?view=aspnetcore-7.0)
 - NestJs/node Api (https://docs.nestjs.com)
 - Angular (https://angular.io)
+- React (https://react.dev/)
 - Docker Compose (https://docs.docker.com/compose)
 - Kubernetes (https://kubernetes.io)
 - Azure Pipelines (https://learn.microsoft.com/en-us/azure/devops/pipelines)

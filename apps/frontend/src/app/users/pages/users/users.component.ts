@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, map, of } from 'rxjs';
 import { User } from '../../models/user';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-users',
@@ -10,23 +11,7 @@ import { User } from '../../models/user';
 export class UsersComponent {
   users$: Observable<User[]>;
 
-  constructor() {
-    this.users$ = of([
-      {
-        name: 'John Doe',
-      },
-      {
-        name: 'Jane Doe',
-      },
-      {
-        name: 'Lis Doe',
-      },
-      {
-        name: 'Peter Doe',
-      },
-      {
-        name: 'McMillan Doe',
-      },
-    ]);
+  constructor(private httpClient: HttpClient) {
+    this.users$ = this.httpClient.get('https://localhost:5000/users').pipe(map((r: any) => r.users));
   }
 }

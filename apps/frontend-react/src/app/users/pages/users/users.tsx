@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 
-import styles from './users.module.scss';
 import { User } from '../../models/user';
 
 /* eslint-disable-next-line */

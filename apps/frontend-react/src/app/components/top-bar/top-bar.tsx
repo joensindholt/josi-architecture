@@ -10,7 +10,7 @@ export function TopBar(props: TopBarProps) {
         </form>
         <div className="dropdown">
           <a
-            href="#"
+            href="/"
             className="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
             data-bs-toggle="dropdown"
             aria-expanded="false"

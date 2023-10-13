@@ -1,0 +1,75 @@
+{
+  "name": "api-dotnet",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/api-dotnet",
+  "projectType": "application",
+  "targets": {
+    "up": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/api-dotnet",
+        "command": "docker-compose up",
+        "color": true
+      }
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/api-dotnet",
+        "command": "dotnet watch --project ./src/JosiArchitecture.Api/JosiArchitecture.Api.csproj",
+        "color": true
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/api-dotnet",
+        "color": true
+      },
+      "configurations": {
+        "production": {
+          "command": "dotnet publish ./src/JosiArchitecture.Api/JosiArchitecture.Api.csproj -o ../../dist/apps/api-dotnet -c Release "
+        },
+        "development": {
+          "command": "dotnet publish ./src/JosiArchitecture.Api/JosiArchitecture.Api.csproj -o ../../dist/apps/api-dotnet -c Debug"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/api-dotnet",
+        "color": true,
+        "commands": [
+          "dotnet test ./test/JosiArchitecture.IntegrationTests/JosiArchitecture.IntegrationTests.csproj",
+          "dotnet test ./test/JosiArchitecture.SpecFlowTests/JosiArchitecture.SpecFlowTests.csproj"
+        ]
+      }
+    },
+    "down": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/api-dotnet",
+        "commands": ["docker-compose down", "docker-compose rm"],
+        "color": true
+      }
+    },
+    "format": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/api-dotnet",
+        "commands": [
+          "dotnet format ./src/JosiArchitecture.Api/JosiArchitecture.Api.csproj",
+          "dotnet format ./src/JosiArchitecture.Core/JosiArchitecture.Core.csproj",
+          "dotnet format ./src/JosiArchitecture.Data/JosiArchitecture.Data.csproj",
+          "dotnet format ./test/JosiArchitecture.IntegrationTests/JosiArchitecture.IntegrationTests.csproj",
+          "dotnet format ./test/JosiArchitecture.SpecFlowTests/JosiArchitecture.SpecFlowTests.csproj",
+          "dotnet format ./test/JosiArchitecture.UnitTests/JosiArchitecture.UnitTests.csproj"
+        ],
+        "color": true
+      }
+    }
+  },
+  "tags": []
+}

@@ -4,7 +4,6 @@ using JosiArchitecture.Core;
 using JosiArchitecture.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -14,7 +13,6 @@ using System;
 using JosiArchitecture.Api.Shared.DatabaseMigration;
 using JosiArchitecture.Core.Search;
 using JosiArchitecture.ElasticSearch;
-using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Options;
 using Serilog;
 
@@ -58,7 +56,6 @@ namespace JosiArchitecture.Api
                     policy.AllowAnyOrigin();
                 });
             });
-
 
             // Other services
             builder.Services.AddSingleton<ISearchService>(provider =>

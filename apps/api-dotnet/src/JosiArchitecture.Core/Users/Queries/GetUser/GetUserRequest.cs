@@ -13,9 +13,9 @@ namespace JosiArchitecture.Core.Users.Queries.GetUser
 {
     public class GetUserRequest : IRequest<OneOf<GetUserResponse, NotFound>>
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
-        public GetUserRequest(int id)
+        public GetUserRequest(string id)
         {
             Id = id;
         }
@@ -32,8 +32,13 @@ namespace JosiArchitecture.Core.Users.Queries.GetUser
 
         public async Task<OneOf<GetUserResponse, NotFound>> Handle(GetUserRequest request, CancellationToken cancellationToken)
         {
+            if (!int.TryParse(request.Id, out int userId))
+            {
+                return new NotFound();
+            }
+
             var user = await _db.Users
-                .Where(l => l.Id == request.Id)
+                .Where(l => l.Id == userId)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(cancellationToken);
 

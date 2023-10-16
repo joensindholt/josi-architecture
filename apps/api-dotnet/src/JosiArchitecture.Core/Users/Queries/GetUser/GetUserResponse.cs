@@ -4,7 +4,7 @@ namespace JosiArchitecture.Core.Users.Queries.GetUser;
 
 public class GetUserResponse
 {
-    public required long Id { get; init; }
+    public required string Id { get; init; }
 
     public required string Name { get; init; }
 

@@ -7,5 +7,7 @@ public interface ISearchService
 {
     Task AddAsync(SearchableUser user, CancellationToken cancellationToken);
 
+    Task RemoveAsync(string id, CancellationToken cancellationToken);
+
     Task<IEnumerable<SearchableUser>> QueryUsersAsync(string? orderBy, CancellationToken cancellationToken);
 }

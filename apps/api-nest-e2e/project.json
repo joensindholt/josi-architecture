@@ -1,22 +1,47 @@
 {
   "name": "api-nest-e2e",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "implicitDependencies": ["api-nest"],
+  "implicitDependencies": [
+    "api-nest"
+  ],
   "projectType": "application",
   "targets": {
     "e2e": {
+      "executor": "nx:noop",
+      "dependsOn": [
+        "e2e-nest",
+        "e2e-dotnet"
+      ]
+    },
+    "e2e-nest": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{e2eProjectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{e2eProjectRoot}"
+      ],
       "options": {
-        "jestConfig": "apps/api-nest-e2e/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "apps/api-nest-e2e/jest.config.nest-api.ts",
+        "ci": true
+      }
+    },
+    "e2e-dotnet": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{e2eProjectRoot}"
+      ],
+      "options": {
+        "jestConfig": "apps/api-nest-e2e/jest.config.dotnet-api.ts",
+        "ci": true
       }
     },
     "lint": {
       "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["apps/api-nest-e2e/**/*.{js,ts}"]
+        "lintFilePatterns": [
+          "apps/api-nest-e2e/**/*.{js,ts}"
+        ]
       }
     }
   }

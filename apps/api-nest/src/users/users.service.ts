@@ -29,7 +29,7 @@ export class UsersService implements OnModuleInit {
   async findOne(id: string): Promise<User | undefined> {
     const collection = this.db.collection(this.collectionName);
     const doc = await collection.findOne({
-      _id: new ObjectId(id),
+      _id: new ObjectId(id)
     });
 
     return doc ? this.mapToUser(doc) : undefined;
@@ -38,20 +38,15 @@ export class UsersService implements OnModuleInit {
   async create(request: CreateUserRequest): Promise<string> {
     const collection = this.db.collection(this.collectionName);
     const result = await collection.insertOne({
-      name: request.name,
+      name: request.name
     });
     return result.insertedId.toString();
-  }
-
-  async update(id: string, request: UpdateUserRequest) {
-    const collection = this.db.collection(this.collectionName);
-    await collection.updateOne({ _id: new ObjectId(id) }, { $set: request });
   }
 
   async remove(id: string) {
     const collection = this.db.collection(this.collectionName);
     await collection.deleteOne({
-      _id: new ObjectId(id),
+      _id: new ObjectId(id)
     });
   }
 
@@ -70,8 +65,8 @@ export class UsersService implements OnModuleInit {
     if (!collections) {
       this.db.createCollection(this.collectionName, {
         collation: {
-          locale: 'da',
-        },
+          locale: 'da'
+        }
       });
       if (this.configService.seedDatabase) {
         await this.seedUsers();
@@ -83,11 +78,11 @@ export class UsersService implements OnModuleInit {
     const collection = this.db.collection(this.collectionName);
     await collection.insertMany([
       {
-        name: 'John Doe',
+        name: 'John Doe'
       },
       {
-        name: 'Jane Doe',
-      },
+        name: 'Jane Doe'
+      }
     ]);
   }
 }

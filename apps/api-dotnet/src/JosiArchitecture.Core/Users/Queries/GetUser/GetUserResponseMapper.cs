@@ -8,7 +8,7 @@ public static class GetUserResponseMapper
     {
         return new GetUserResponse
         {
-            Id = user.Id,
+            Id = user.Id.ToString(),
             Name = user.Name,
             Profiles = user.Profiles.Select(p => new GetUserResponse.Profile
             {

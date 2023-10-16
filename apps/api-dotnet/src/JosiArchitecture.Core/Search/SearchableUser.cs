@@ -8,9 +8,9 @@ public class SearchableUser
 {
     public string Name { get; }
 
-    public int Id { get; }
+    public string Id { get; }
 
-    public SearchableUser(int id, string name)
+    public SearchableUser(string id, string name)
     {
         Id = id;
         Name = name;
@@ -18,6 +18,6 @@ public class SearchableUser
 
     public static SearchableUser FromUser(User user)
     {
-        return new SearchableUser(user.Id, user.Name);
+        return new SearchableUser(user.Id.ToString(), user.Name);
     }
 }

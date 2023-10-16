@@ -44,7 +44,7 @@ public class GetUsersTests
         // Assert
         users.Should().NotBeNull();
         users.Should().NotBeNullOrEmpty();
-        users.Should().Contain(l => l.Name == name && l.Id > 0, $"User '{name}' should be in list of users after adding her/him");
+        users.Should().Contain(l => l.Name == name && l.Id.Length > 0, $"User '{name}' should be in list of users after adding her/him");
     }
 
     [Fact]

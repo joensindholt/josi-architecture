@@ -1,30 +1,47 @@
-import { Body, Controller, Delete, Get, NotFoundException, Param, Patch, Post, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  Logger,
+  NotFoundException,
+  Param,
+  Patch,
+  Post,
+  Query,
+  Response
+} from '@nestjs/common';
+import { Response as Res } from 'express';
 
 import { UsersService } from './users.service';
 import { CreateUserRequest, UpdateUserRequest } from './user';
 
 @Controller('users')
 export class UsersController {
+  private readonly logger = new Logger(UsersController.name);
+
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
-  async create(@Body() createUserRequest: CreateUserRequest) {
+  async create(@Body() createUserRequest: CreateUserRequest, @Response() res: Res) {
+    this.logger.log('Creating user');
     const id = await this.usersService.create(createUserRequest);
-    return {
-      id,
-    };
+    return res.set({ Location: `/users/${id}` }).json({ id });
   }
 
   @Get()
   async find(@Query('orderby') orderby: string) {
+    this.logger.log('Finding all users');
     const users = await this.usersService.findAll(orderby);
     return {
-      users,
+      users
     };
   }
 
   @Get(':id')
   async findOne(@Param('id') id: string) {
+    this.logger.log('Finding user');
     const user = await this.usersService.findOne(id);
     if (user === undefined) {
       throw new NotFoundException();
@@ -32,13 +49,10 @@ export class UsersController {
     return user;
   }
 
-  @Patch(':id')
-  async update(@Param('id') id: string, @Body() updateUserRequest: UpdateUserRequest) {
-    return await this.usersService.update(id, updateUserRequest);
-  }
-
   @Delete(':id')
+  @HttpCode(204)
   async remove(@Param('id') id: string) {
-    return await this.usersService.remove(id);
+    this.logger.log('Removing user');
+    await this.usersService.remove(id);
   }
 }

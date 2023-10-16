@@ -15,3 +15,7 @@ jobs:
         run: npx nx run-many -t lint --verbose
       - name: Build
         run: npx nx run-many -t build  --verbose
+      - name: Start containers
+        run: docker-compose -f "apps/api-dotnet/docker-compose.yml" -f "apps/api-nest/docker-compose.yml" up -d --build
+      - name: Stop containers
+        run: docker-compose -f "apps/api-dotnet/docker-compose.yml" -f "apps/api-nest/docker-compose.yml" down

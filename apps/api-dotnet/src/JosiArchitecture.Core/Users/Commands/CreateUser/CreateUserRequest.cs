@@ -8,12 +8,12 @@ using MediatR;
 
 namespace JosiArchitecture.Core.Users.Commands.CreateUser;
 
-public class CreateUserRequest : IRequest<int>
+public class CreateUserRequest : IRequest<CreateUserResponse>
 {
-    public required string Name { get; init; }
+    public string? Name { get; set; }
 }
 
-public class CreateUserHandler : IRequestHandler<CreateUserRequest, int>
+public class CreateUserHandler : IRequestHandler<CreateUserRequest, CreateUserResponse>
 {
     private readonly IApplicationDbContext _db;
     private readonly ISearchService _searchService;
@@ -24,7 +24,7 @@ public class CreateUserHandler : IRequestHandler<CreateUserRequest, int>
         _searchService = searchService;
     }
 
-    public async Task<int> Handle(CreateUserRequest request, CancellationToken cancellationToken)
+    public async Task<CreateUserResponse> Handle(CreateUserRequest request, CancellationToken cancellationToken)
     {
         var user = new User(request.Name!);
 
@@ -33,6 +33,9 @@ public class CreateUserHandler : IRequestHandler<CreateUserRequest, int>
 
         await _searchService.AddAsync(SearchableUser.FromUser(user), cancellationToken);
 
-        return user.Id;
+        return new CreateUserResponse
+        {
+            Id = user.Id.ToString()
+        };
     }
 }

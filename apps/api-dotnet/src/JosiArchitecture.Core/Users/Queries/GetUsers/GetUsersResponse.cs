@@ -6,7 +6,7 @@ public class GetUsersResponse
 
     public class User
     {
-        public required long Id { get; init; }
+        public required string Id { get; init; }
 
         public required string Name { get; init; }
     }

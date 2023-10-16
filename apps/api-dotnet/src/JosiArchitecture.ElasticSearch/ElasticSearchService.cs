@@ -31,7 +31,22 @@ public class ElasticSearchService : ISearchService
 
     public async Task AddAsync(SearchableUser user, CancellationToken cancellationToken)
     {
-        await _client.IndexAsync(user, IndexNameUsers, cancellationToken);
+        var response = await _client.IndexAsync(user, IndexNameUsers, cancellationToken);
+
+        if (!response.IsValidResponse)
+        {
+            throw new SearchProviderException(response.ToString());
+        }
+    }
+
+    public async Task RemoveAsync(string id, CancellationToken cancellationToken)
+    {
+        var response = await _client.DeleteAsync(IndexNameUsers, id, cancellationToken);
+
+        if (!response.IsValidResponse)
+        {
+            throw new SearchProviderException(response.ToString());
+        }
     }
 
     public async Task<IEnumerable<SearchableUser>> QueryUsersAsync(string? orderBy, CancellationToken cancellationToken)
@@ -72,10 +87,10 @@ public class ElasticSearchService : ISearchService
                 {{
                   ""mappings"": {{
                         ""properties"": {{
-                            ""{nameof(SearchableUser.Name).CamelCase()}"": {{   
+                            ""{nameof(SearchableUser.Name).CamelCase()}"": {{
                                 ""type"": ""keyword"",
                                 ""fields"": {{
-                                    ""sort"": {{  
+                                    ""sort"": {{
                                         ""type"": ""icu_collation_keyword"",
                                         ""index"": false,
                                         ""language"": ""da"",

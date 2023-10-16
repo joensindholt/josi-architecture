@@ -76,7 +76,6 @@ services:
     depends_on:
       elasticsearch:
         condition: service_started
-        restart: true
     networks:
       - elastic
     ports:

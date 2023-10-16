@@ -6,14 +6,14 @@
   ],
   "projectType": "application",
   "targets": {
-    "e2e": {
+    "api-e2e": {
       "executor": "nx:noop",
       "dependsOn": [
-        "e2e-nest",
-        "e2e-dotnet"
+        "api-e2e-nest",
+        "api-e2e-dotnet"
       ]
     },
-    "e2e-nest": {
+    "api-e2e-nest": {
       "executor": "@nx/jest:jest",
       "outputs": [
         "{workspaceRoot}/coverage/{e2eProjectRoot}"
@@ -23,7 +23,7 @@
         "ci": true
       }
     },
-    "e2e-dotnet": {
+    "api-e2e-dotnet": {
       "executor": "@nx/jest:jest",
       "outputs": [
         "{workspaceRoot}/coverage/{e2eProjectRoot}"

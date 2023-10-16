@@ -1,0 +1,16 @@
+services:
+  webapi:
+    build:
+      context: ../apps/api-dotnet
+      dockerfile: src/JosiArchitecture.Api/Dockerfile
+    ports:
+      - '8010:80'
+      - '44311:443'
+    volumes:
+      - ./../certs:/certs
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+      - ASPNETCORE_URLS=https://+;http://+
+      - ASPNETCORE_HTTPS_PORT=44311
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=password
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/certs/localhost.pfx

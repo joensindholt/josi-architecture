@@ -1,5 +1,6 @@
 name: CICD
 on: push
+
 jobs:
   build:
     name: Build
@@ -8,7 +9,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: nrwl/nx-set-shas@v3
+      - uses: nrwl/nx-set-shas@v4
       - name: Install pnpm
         run: npm install -g pnpm
       - name: Install pnpm packages

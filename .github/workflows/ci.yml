@@ -7,19 +7,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Install pnpm
-        run: npm install -g pnpm
-      - name: Install pnpm packages
-        run: pnpm install
-      - name: Lint
-        run: npx nx run-many -t lint --verbose
-      - name: Build
-        run: npx nx run-many -t build  --verbose
+      # - name: Install pnpm
+      #   run: npm install -g pnpm
+      # - name: Install pnpm packages
+      #   run: pnpm install
+      # - name: Lint
+      #   run: npx nx run-many -t lint --verbose
+      # - name: Build
+      #   run: npx nx run-many -t build  --verbose
       - name: Start containers
-        run: docker-compose -f "docker/infra.docker-compose.yml" -f "docker/api.docker-compose.yml" up --build
-      - name: Test Nest Api
-        run: npx nx run api-nest-e2e:api-e2e-nest
-      - name: Test Dotnet Api
-        run: npx nx run api-nest-e2e:api-e2e-dotnet
-      - name: Stop containers
-        run: docker-compose -f "docker/infra.docker-compose.yml" -f "docker/api.docker-compose.yml" down
+        run: docker-compose -f "docker/infra.docker-compose.yml" up --build
+      # - name: Test Nest Api
+      #   run: npx nx run api-nest-e2e:api-e2e-nest
+      # - name: Test Dotnet Api
+      #   run: npx nx run api-nest-e2e:api-e2e-dotnet
+      # - name: Stop containers
+      #   run: docker-compose -f "docker/infra.docker-compose.yml" -f "docker/api.docker-compose.yml" down

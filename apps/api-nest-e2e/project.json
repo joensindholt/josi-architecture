@@ -20,7 +20,8 @@
       ],
       "options": {
         "jestConfig": "apps/api-nest-e2e/jest.config.api-nest.ts",
-        "ci": true
+        "ci": true,
+        "verbose": true
       }
     },
     "api-e2e-dotnet": {
@@ -30,7 +31,8 @@
       ],
       "options": {
         "jestConfig": "apps/api-nest-e2e/jest.config.api-dotnet.ts",
-        "ci": true
+        "ci": true,
+        "verbose": true
       }
     },
     "lint": {

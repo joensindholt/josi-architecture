@@ -2,10 +2,10 @@ import axios from 'axios';
 
 describe('POST /users', () => {
   it('should create a user and return the user id for that user', async () => {
-    const response = await axios.post(`/users`, {
-      name: 'Random Name'
-    });
+    // act
+    const response = await axios.post(`/users`, { name: 'Random Name' });
 
+    // assert
     expect(response).toBeTruthy();
     expect(response.status).toBe(201);
     expect(response.data.id).not.toBeUndefined();
@@ -13,8 +13,10 @@ describe('POST /users', () => {
   });
 
   it('should not allow users with no name', async () => {
-    const response = await axios.post(`/users`, { wrongName: 'John' });
+    // act
+    const response = await axios.post(`/users`, {});
 
+    // assert
     expect(response).toBeTruthy();
     expect(response.status).toBe(400);
     const data = await response.data;

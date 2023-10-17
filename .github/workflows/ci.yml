@@ -17,7 +17,9 @@ jobs:
         run: npx nx run-many -t build  --verbose
       - name: Start containers
         run: docker-compose -f "docker/infra.docker-compose.yml" -f "docker/api.docker-compose.yml" up -d --build
-      - name: End-to-end Api Test
-        run: npx nx api-e2e api-nest-e2e --verbose
+      - name: Test Nest Api
+        run: npx nx run api-nest-e2e:api-e2e-nest
+      - name: Test Dotnet Api
+        run: npx nx run api-nest-e2e:api-e2e-dotnet
       - name: Stop containers
         run: docker-compose -f "docker/infra.docker-compose.yml" -f "docker/api.docker-compose.yml" down

@@ -50,7 +50,7 @@ kubectl stern "." -n sindholt-house
 ## Run in local kubernetes
 
 ```powershell
-minikube start    # or minikube start --driver=podman --container-runtime=containerd
+minikube start     # or minikube start --driver=podman --container-runtime=containerd
 docker context use default
 docker build -t webapi-dotnet -f .\src\JosiArchitecture.Api\Dockerfile .
 minikube image load webapi-dotnet

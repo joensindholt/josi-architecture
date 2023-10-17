@@ -14,7 +14,7 @@ module.exports = async function () {
   let healthy = false;
 
   async function handleApiNotReady() {
-    console.log('Waiting for api to be ready');
+    console.log('Waiting for dotnet api to be ready');
     await new Promise(resolve =>
       setTimeout(() => {
         resolve(0);

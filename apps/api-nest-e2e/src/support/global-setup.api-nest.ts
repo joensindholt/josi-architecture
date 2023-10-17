@@ -19,7 +19,7 @@ module.exports = async function () {
       }
       healthy = true;
     } catch (err) {
-      console.log('Waiting for api to be ready');
+      console.log('Waiting for nest api to be ready');
       await new Promise(resolve =>
         setTimeout(() => {
           resolve(0);

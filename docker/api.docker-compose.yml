@@ -19,7 +19,7 @@ services:
       context: ../
       dockerfile: ./apps/api-nest/Dockerfile
     ports:
-      - '44310:443'
+      - '44310:44310'
     environment:
       - PORT=44310
       - HOST=0.0.0.0

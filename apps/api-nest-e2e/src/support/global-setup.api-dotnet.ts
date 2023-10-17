@@ -13,8 +13,11 @@ module.exports = async function () {
 
   let healthy = false;
 
-  async function handleApiNotReady() {
+  async function handleApiNotReady(data) {
     console.log('Waiting for dotnet api to be ready');
+    if (data) {
+      console.log(data);
+    }
     await new Promise(resolve =>
       setTimeout(() => {
         resolve(0);
@@ -28,10 +31,10 @@ module.exports = async function () {
       if (response?.status === 200) {
         healthy = true;
       } else {
-        await handleApiNotReady();
+        await handleApiNotReady(response?.data);
       }
     } catch (err) {
-      await handleApiNotReady();
+      await handleApiNotReady(err);
     }
   }
 };

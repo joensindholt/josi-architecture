@@ -15,6 +15,13 @@ using JosiArchitecture.Core.Search;
 using JosiArchitecture.ElasticSearch;
 using Microsoft.Extensions.Options;
 using Serilog;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+using System.Text.Json;
+using System.IO;
+using System.Text;
 
 namespace JosiArchitecture.Api
 {
@@ -83,9 +90,53 @@ namespace JosiArchitecture.Api
             app.UseApplicationErrorHandling();
             app.UseCors(MyAllowSpecificOrigins);
             app.UseAuthorization();
-            app.MapHealthChecks("/health");
+            app.MapHealthChecks("/health", new HealthCheckOptions
+            {
+                ResponseWriter = WriteResponse
+            });
             app.MapControllers();
             app.Run();
+        }
+
+        private static Task WriteResponse(HttpContext context, HealthReport healthReport)
+        {
+            context.Response.ContentType = "application/json; charset=utf-8";
+
+            var options = new JsonWriterOptions { Indented = true };
+
+            using var memoryStream = new MemoryStream();
+            using (var jsonWriter = new Utf8JsonWriter(memoryStream, options))
+            {
+                jsonWriter.WriteStartObject();
+                jsonWriter.WriteString("status", healthReport.Status.ToString());
+                jsonWriter.WriteStartObject("results");
+
+                foreach (var healthReportEntry in healthReport.Entries)
+                {
+                    jsonWriter.WriteStartObject(healthReportEntry.Key);
+                    jsonWriter.WriteString("status",
+                        healthReportEntry.Value.Status.ToString());
+                    jsonWriter.WriteString("description",
+                        healthReportEntry.Value.Description);
+                    jsonWriter.WriteStartObject("data");
+
+                    foreach (var item in healthReportEntry.Value.Data)
+                    {
+                        jsonWriter.WritePropertyName(item.Key);
+
+                        JsonSerializer.Serialize(jsonWriter, item.Value,
+                            item.Value?.GetType() ?? typeof(object));
+                    }
+
+                    jsonWriter.WriteEndObject();
+                    jsonWriter.WriteEndObject();
+                }
+
+                jsonWriter.WriteEndObject();
+                jsonWriter.WriteEndObject();
+            }
+
+            return context.Response.WriteAsync(Encoding.UTF8.GetString(memoryStream.ToArray()));
         }
 
         private static void ConfigureLogging(WebApplicationBuilder builder)

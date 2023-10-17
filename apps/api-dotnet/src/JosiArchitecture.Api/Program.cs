@@ -27,7 +27,7 @@ namespace JosiArchitecture.Api
 {
     public class Program
     {
-        const string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+        const string MyAllowSpecificOrigins = "myAllowSpecificOrigins";
 
         public static void Main(string[] args)
         {

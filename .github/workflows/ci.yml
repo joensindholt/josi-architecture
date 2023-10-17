@@ -17,9 +17,9 @@ jobs:
       - name: Install pnpm packages
         run: pnpm install
       - name: Lint
-        run: npx nx affected -t lint --base=master --head=HEAD --parallel=3
+        run: npx nx run-many -t lint --parallel=3
       - name: Build
-        run: npx nx affected -t build --base=master --head=HEAD --parallel=3
+        run: npx nx run-many -t build --parallel=3
       # - name: Start containers
       #   run: docker-compose -f "docker/infra.docker-compose.yml" -f "docker/api.docker-compose.yml" up -d --build
       # - name: Test Nest Api

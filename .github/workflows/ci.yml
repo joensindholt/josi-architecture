@@ -10,6 +10,8 @@ jobs:
         with:
           fetch-depth: 0
       - uses: nrwl/nx-set-shas@v4
+        with:
+          main-branch-name: master
       - name: Install pnpm
         run: npm install -g pnpm
       - name: Install pnpm packages

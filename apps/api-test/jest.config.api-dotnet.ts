@@ -3,7 +3,7 @@ import config from './jest.config';
 /* eslint-disable */
 export default {
   ...config,
-  displayName: 'api-nest-e2e',
+  displayName: 'api-test',
   globalSetup: '<rootDir>/src/support/global-setup.api-dotnet.ts',
   setupFiles: ['<rootDir>/src/support/test-setup.api-dotnet.ts']
 };

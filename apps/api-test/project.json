@@ -1,5 +1,5 @@
 {
-  "name": "api-nest-e2e",
+  "name": "api-test",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "implicitDependencies": [
     "api-nest"
@@ -19,7 +19,7 @@
         "{workspaceRoot}/coverage/{e2eProjectRoot}"
       ],
       "options": {
-        "jestConfig": "apps/api-nest-e2e/jest.config.api-nest.ts",
+        "jestConfig": "apps/api-test/jest.config.api-nest.ts",
         "ci": true,
         "verbose": true
       }
@@ -30,7 +30,7 @@
         "{workspaceRoot}/coverage/{e2eProjectRoot}"
       ],
       "options": {
-        "jestConfig": "apps/api-nest-e2e/jest.config.api-dotnet.ts",
+        "jestConfig": "apps/api-test/jest.config.api-dotnet.ts",
         "ci": true,
         "verbose": true
       }
@@ -42,7 +42,7 @@
       ],
       "options": {
         "lintFilePatterns": [
-          "apps/api-nest-e2e/**/*.{js,ts}"
+          "apps/api-test/**/*.{js,ts}"
         ]
       }
     }

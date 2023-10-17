@@ -14,5 +14,5 @@ export default {
     ]
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/api-nest-e2e'
+  coverageDirectory: '../../coverage/api-test'
 };

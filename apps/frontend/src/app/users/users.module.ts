@@ -8,6 +8,6 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [UsersComponent],
   imports: [CommonModule, RouterModule.forChild(userRoutes), HttpClientModule],
-  exports: [UsersComponent],
+  exports: [UsersComponent]
 })
 export class UsersModule {}

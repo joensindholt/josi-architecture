@@ -1,14 +1,15 @@
 import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { Db, Document, ObjectId, WithId } from 'mongodb';
 
-import { CreateUserRequest, UpdateUserRequest, User } from './user';
+import { CreateUserRequest, User } from './user';
 import { AppConfigService } from '../configuration/app-config-service';
+import { databaseConnection } from '../database/database.connection.factory';
 
 @Injectable()
 export class UsersService implements OnModuleInit {
   private readonly collectionName = 'users';
 
-  constructor(@Inject('DATABASE_CONNECTION') private db: Db, private configService: AppConfigService) {}
+  constructor(@Inject(databaseConnection) private db: Db, private configService: AppConfigService) {}
 
   async onModuleInit(): Promise<void> {
     await this.initializeUsersCollection();

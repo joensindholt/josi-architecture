@@ -1,10 +1,9 @@
 /* eslint-disable */
 export default {
-  displayName: 'api-nest-e2e',
   preset: '../../jest.preset.js',
+  setupFiles: ['<rootDir>/src/support/test-setup.ts'],
   globalSetup: '<rootDir>/src/support/global-setup.ts',
   globalTeardown: '<rootDir>/src/support/global-teardown.ts',
-  setupFiles: ['<rootDir>/src/support/test-setup.dotnet-api.ts'],
   testEnvironment: 'node',
   transform: {
     '^.+\\.[tj]s$': [

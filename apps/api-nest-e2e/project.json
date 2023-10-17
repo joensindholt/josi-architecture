@@ -19,7 +19,7 @@
         "{workspaceRoot}/coverage/{e2eProjectRoot}"
       ],
       "options": {
-        "jestConfig": "apps/api-nest-e2e/jest.config.nest-api.ts",
+        "jestConfig": "apps/api-nest-e2e/jest.config.api-nest.ts",
         "ci": true
       }
     },
@@ -29,7 +29,7 @@
         "{workspaceRoot}/coverage/{e2eProjectRoot}"
       ],
       "options": {
-        "jestConfig": "apps/api-nest-e2e/jest.config.dotnet-api.ts",
+        "jestConfig": "apps/api-nest-e2e/jest.config.api-dotnet.ts",
         "ci": true
       }
     },

@@ -9,12 +9,8 @@ import { NavBarTopComponent } from './components/nav-bar-top/nav-bar-top.compone
 
 @NgModule({
   declarations: [AppComponent, MenuComponent, NavBarTopComponent],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
-    NgbModule,
-  ],
+  imports: [BrowserModule, RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }), NgbModule],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -20,14 +20,16 @@ async function bootstrap() {
   }
 
   const app = await NestFactory.create(AppModule, { httpsOptions, logger: ['debug', 'verbose'] });
+
   app.useGlobalFilters(new HttpExceptionFilter());
+
   app.useGlobalPipes(
     new ValidationPipe({
       exceptionFactory(errors: ValidationError[]) {
         return new BadRequestException({
           message: "Your request parameters didn't validate",
           error: {
-            'invalid-params': errors.map((e) => ({
+            'invalid-params': errors.map(e => ({
               name: e.property,
               reason: Object.values(e.constraints)[0]
             }))

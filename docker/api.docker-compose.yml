@@ -14,3 +14,16 @@ services:
       - ASPNETCORE_HTTPS_PORT=44311
       - ASPNETCORE_Kestrel__Certificates__Default__Password=password
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/certs/localhost.pfx
+  api-nest:
+    build:
+      context: ../
+      dockerfile: ./apps/api-nest/Dockerfile
+    ports:
+      - '44310:443'
+    environment:
+      - PORT=44310
+      - HOST=0.0.0.0
+      - SSL=true
+      - SSL_KEY_PATH=../../../certs/localhost-key.pem
+      - SSL_CERT_PATH=../../../certs/localhost.pem
+      - DATABASE_CONNECTIONSTRING=mongodb://josi:letmepass!!42@mongo:27017/

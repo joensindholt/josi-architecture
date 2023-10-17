@@ -6,12 +6,12 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss'],
+  styleUrls: ['./users.component.scss']
 })
 export class UsersComponent {
   users$: Observable<User[]>;
 
   constructor(private httpClient: HttpClient) {
-    this.users$ = this.httpClient.get<GetUsersResponse>('https://localhost:5000/users').pipe(map((r) => r.users));
+    this.users$ = this.httpClient.get<GetUsersResponse>('https://localhost:5000/users').pipe(map(r => r.users));
   }
 }

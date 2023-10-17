@@ -1,18 +1,15 @@
 import { Module } from '@nestjs/common';
-import { MongoClient, Db } from 'mongodb';
+import { ConfigModule } from '@nestjs/config';
+import { databaseConnectionFactory, databaseConnection } from './database.connection.factory';
 
 @Module({
+  imports: [ConfigModule],
   providers: [
     {
-      provide: 'DATABASE_CONNECTION',
-      useFactory: async (): Promise<Db> => {
-        const client = await MongoClient.connect(
-          'mongodb://josi:letmepass!!42@127.0.0.1:27017/'
-        );
-        return client.db('josi');
-      },
-    },
+      provide: databaseConnection,
+      useFactory: databaseConnectionFactory
+    }
   ],
-  exports: ['DATABASE_CONNECTION'],
+  exports: [databaseConnection]
 })
 export class DatabaseModule {}

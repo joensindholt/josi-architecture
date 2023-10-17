@@ -20,8 +20,8 @@ describe('GET /users', () => {
     const res = await axios.get('/users?orderby=name');
     const users: { name: string }[] = res.data.users;
 
-    expect(users.findIndex((u) => u.name == 'Anton')).toBeLessThan(users.findIndex((u) => u.name == 'Ålholm'));
-    expect(users.findIndex((u) => u.name == 'Anton')).toBeLessThan(users.findIndex((u) => u.name == 'AAbenholm'));
-    expect(users.findIndex((u) => u.name == 'AAbenholm')).toBeLessThan(users.findIndex((u) => u.name == 'Ålholm'));
+    expect(users.findIndex(u => u.name == 'Anton')).toBeLessThan(users.findIndex(u => u.name == 'Ålholm'));
+    expect(users.findIndex(u => u.name == 'Anton')).toBeLessThan(users.findIndex(u => u.name == 'AAbenholm'));
+    expect(users.findIndex(u => u.name == 'AAbenholm')).toBeLessThan(users.findIndex(u => u.name == 'Ålholm'));
   });
 });

@@ -41,10 +41,13 @@ namespace JosiArchitecture.Api
             // Application core services
             builder.Services.AddCoreServices();
 
-            // Application data services
+            builder.Services
+                .AddHealthChecks()
+                .AddNpgSql(builder.Configuration.GetConnectionString("Postgres")!)
+                .AddElasticsearch(builder.Configuration["ElasticSearchService:Uri"]!);
+
             builder.Services.AddDataServices(builder.Configuration);
 
-            // Api services
             builder.Services.AddApiServices();
 
             builder.Services.AddCors(options =>
@@ -57,7 +60,6 @@ namespace JosiArchitecture.Api
                 });
             });
 
-            // Other services
             builder.Services.AddSingleton<ISearchService>(provider =>
             {
                 var options = provider.GetRequiredService<IOptions<ElasticSearchServiceOptions>>();
@@ -77,17 +79,12 @@ namespace JosiArchitecture.Api
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Todo API V1");
                 c.RoutePrefix = string.Empty;
             });
-
             app.UseHttpsRedirection();
-
             app.UseApplicationErrorHandling();
-
             app.UseCors(MyAllowSpecificOrigins);
-
             app.UseAuthorization();
-
+            app.MapHealthChecks("/health");
             app.MapControllers();
-
             app.Run();
         }
 

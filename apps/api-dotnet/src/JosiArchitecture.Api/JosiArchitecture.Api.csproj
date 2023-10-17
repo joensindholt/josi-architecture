@@ -9,6 +9,8 @@
     <Folder Include="wwwroot\" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="AspNetCore.HealthChecks.Elasticsearch" Version="7.0.0" />
+    <PackageReference Include="AspNetCore.HealthChecks.Npgsql" Version="7.1.0" />
     <PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.2.2" />
     <PackageReference Include="Azure.Identity" Version="1.8.0" />
     <PackageReference Include="MediatR" Version="12.1.1" />

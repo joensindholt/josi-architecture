@@ -5,16 +5,18 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from '../users/users.module';
 import { ConfigurationModule } from '../configuration/configuration.module';
+import { HealthModule } from '../health/health.module';
 
 @Module({
   imports: [
     UsersModule,
-    ConfigModule.forRoot({
-      isGlobal: true,
-    }),
+    HealthModule,
     ConfigurationModule,
+    ConfigModule.forRoot({
+      isGlobal: true
+    })
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService]
 })
 export class AppModule {}

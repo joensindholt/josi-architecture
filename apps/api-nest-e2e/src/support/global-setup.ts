@@ -1,10 +1,22 @@
-/* eslint-disable */
-var __TEARDOWN_MESSAGE__: string;
+import axios from 'axios';
+import https from 'https';
 
-module.exports = async function () {
-  // Start services that that the app needs to run (e.g. database, docker-compose, etc.).
+export default async function () {
   console.log('\nSetting up...\n');
 
-  // Hint: Use `globalThis` to pass variables to global teardown.
+  // Ignore SSL cert errors
+  axios.defaults.httpAgent = new https.Agent({
+    rejectUnauthorized: false
+  });
+
+  axios.interceptors.response.use(
+    function (response) {
+      return response;
+    },
+    function (error) {
+      return Promise.resolve(error.response);
+    }
+  );
+
   globalThis.__TEARDOWN_MESSAGE__ = '\nTearing down...\n';
-};
+}

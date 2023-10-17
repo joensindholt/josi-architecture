@@ -7,7 +7,7 @@ describe('NavBarTopComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [NavBarTopComponent],
+      declarations: [NavBarTopComponent]
     }).compileComponents();
 
     fixture = TestBed.createComponent(NavBarTopComponent);

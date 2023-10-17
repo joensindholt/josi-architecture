@@ -7,7 +7,6 @@ import {
   Logger,
   NotFoundException,
   Param,
-  Patch,
   Post,
   Query,
   Response
@@ -15,7 +14,7 @@ import {
 import { Response as Res } from 'express';
 
 import { UsersService } from './users.service';
-import { CreateUserRequest, UpdateUserRequest } from './user';
+import { CreateUserRequest } from './user';
 
 @Controller('users')
 export class UsersController {

@@ -19,19 +19,19 @@
     "@babel/preset-react": "^7.14.5",
     "@nestjs/schematics": "^10.0.1",
     "@nestjs/testing": "^10.0.2",
-    "@nx/angular": "^16.10.0",
+    "@nx/angular": "16.10.0",
     "@nx/devkit": "16.10.0",
     "@nx/esbuild": "16.10.0",
     "@nx/eslint-plugin": "16.10.0",
     "@nx/jest": "16.10.0",
     "@nx/js": "16.10.0",
     "@nx/linter": "16.10.0",
-    "@nx/nest": "^16.10.0",
-    "@nx/node": "^16.10.0",
+    "@nx/nest": "16.10.0",
+    "@nx/node": "16.10.0",
     "@nx/playwright": "16.10.0",
-    "@nx/react": "^16.10.0",
+    "@nx/react": "16.10.0",
     "@nx/webpack": "16.10.0",
-    "@nx/workspace": "16.9.1",
+    "@nx/workspace": "16.10.0",
     "@playwright/test": "^1.36.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.7",
     "@schematics/angular": "~16.2.0",
@@ -59,7 +59,7 @@
     "jest-environment-node": "^29.4.1",
     "jest-preset-angular": "~13.1.0",
     "jsonc-eslint-parser": "^2.1.0",
-    "nx": "16.9.1",
+    "nx": "16.10.0",
     "prettier": "^2.6.2",
     "react-refresh": "^0.10.0",
     "ts-jest": "^29.1.0",
@@ -108,3 +108,4 @@
     "zone.js": "~0.13.0"
   }
 }
+

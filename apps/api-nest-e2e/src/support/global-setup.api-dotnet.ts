@@ -2,6 +2,7 @@ import axios from 'axios';
 import setup from './global-setup';
 
 module.exports = async function () {
+  console.log('Global setup');
   await setup();
 
   axios.defaults.baseURL = 'https://localhost:44311';

@@ -3,6 +3,11 @@ services:
     build:
       context: ../apps/api-dotnet
       dockerfile: src/JosiArchitecture.Api/Dockerfile
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
     ports:
       - '8010:80'
       - '44311:443'
@@ -18,6 +23,9 @@ services:
     build:
       context: ../
       dockerfile: ./apps/api-nest/Dockerfile
+    depends_on:
+      mongo:
+        condition: service_started
     ports:
       - '44310:44310'
     environment:

@@ -25,6 +25,17 @@ services:
       discovery.type: 'single-node'
       xpack.security.enabled: 'false'
       xpack.security.enrollment.enabled: 'false'
+      ES_JAVA_OPTS: '-Xms1024m -Xmx1024m'
+      bootstrap.memory_lock: 'true'
+    healthcheck:
+      test: curl --fail elasticsearch:9200/_cat/health >/dev/null || exit 1
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
 
   kibana:
     image: kibana:8.10.2
@@ -46,6 +57,9 @@ services:
   mongo-express:
     image: mongo-express
     restart: always
+    depends_on:
+      mongo:
+        condition: service_started
     ports:
       - 8081:8081
     environment:

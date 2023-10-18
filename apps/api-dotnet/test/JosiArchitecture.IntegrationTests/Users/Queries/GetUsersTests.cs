@@ -39,7 +39,7 @@ public class GetUsersTests
                 var users = usersResponse.Users.ToList();
                 return users;
             },
-            checker: users => users.Any(u => u.Name == name));
+            checker: users => users.Exists(u => u.Name == name));
 
         // Assert
         users.Should().NotBeNull();
@@ -72,7 +72,7 @@ public class GetUsersTests
                 var users = usersResponse.Users.ToList();
                 return users;
             },
-            checker: users => users.Any(u => u.Name == userRequests.Last().Name));
+            checker: users => users.Exists(u => u.Name == userRequests[^1].Name));
 
         // Assert
         users.FindIndex(u => u.Name == "Anton").Should().BeLessThan(users.FindIndex(u => u.Name == "Ålholm"));

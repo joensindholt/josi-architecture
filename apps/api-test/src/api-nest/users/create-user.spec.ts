@@ -2,6 +2,7 @@ import axios from 'axios';
 
 describe('POST /users', () => {
   it('should create a user and return the user id for that user', async () => {
+    console.log('test');
     // act
     const response = await axios.post(`/users`, { name: 'Random Name' });
 

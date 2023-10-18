@@ -1,3 +1,4 @@
+using System.Linq;
 using JosiArchitecture.Core.Shared.Persistence;
 using JosiArchitecture.Core.Users;
 using JosiArchitecture.Data.Configuration;
@@ -36,9 +37,9 @@ namespace JosiArchitecture.Data
 
         private static void UseSingularTableNames(ModelBuilder modelBuilder)
         {
-            foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+            foreach (var clrType in modelBuilder.Model.GetEntityTypes().Select((e => e.ClrType)))
             {
-                modelBuilder.Entity(entityType.ClrType).ToTable(entityType.ClrType.Name);
+                modelBuilder.Entity(clrType).ToTable(clrType.Name);
             }
         }
     }

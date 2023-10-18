@@ -23,6 +23,7 @@ namespace JosiArchitecture.Api.Controllers
         [ProducesResponseType(typeof(GetUsersResponse), StatusCodes.Status200OK)]
         public async Task<ActionResult<GetUsersResponse>> GetUsers([FromQuery] GetUsersRequest request)
         {
+            System.Console.WriteLine("asd");
             var response = await _mediator.Send(request);
             return Ok(response);
         }

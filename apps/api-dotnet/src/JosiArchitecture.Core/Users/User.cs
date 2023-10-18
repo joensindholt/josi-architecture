@@ -18,7 +18,7 @@ namespace JosiArchitecture.Core.Users
 
         private readonly List<Profile> _profiles;
 
-        public IEnumerable<Profile> Profiles => _profiles.ToList();
+        public IEnumerable<Profile> Profiles => _profiles;
 
         public void AddProfile(Profile profile)
         {

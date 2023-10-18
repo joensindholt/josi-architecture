@@ -32,7 +32,7 @@ namespace JosiArchitecture.Data
                     services.AddDbContext<DataStore>(options => options.UseNpgsql(configuration.GetConnectionString("Postgres")));
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(databaseOptions), $"Unhandled provider");
+                    throw new NotImplementedException($"Unhandled provider");
             }
         }
     }

@@ -25,9 +25,9 @@ using System.Text;
 
 namespace JosiArchitecture.Api
 {
-    public class Program
+    public static class Program
     {
-        const string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+        private const string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
         public static void Main(string[] args)
         {

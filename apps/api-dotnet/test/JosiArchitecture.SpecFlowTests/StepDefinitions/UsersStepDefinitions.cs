@@ -34,7 +34,7 @@ namespace JosiArchitecture.SpecFlowTests.StepDefinitions
                     var users = usersResponse.Users.ToList();
                     return users;
                 },
-                checker: users => users.Any(u => u.Name == name));
+                checker: users => users.Exists(u => u.Name == name));
 
             users.Should().NotBeNull();
             users.Should().NotBeEmpty();

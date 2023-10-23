@@ -35,7 +35,7 @@ public class CreateUserHandler : IRequestHandler<CreateUserRequest, CreateUserRe
 
         return new CreateUserResponse
         {
-            Id = user.Id!.ToString()
+            Id = user.Id.ToString()
         };
     }
 }

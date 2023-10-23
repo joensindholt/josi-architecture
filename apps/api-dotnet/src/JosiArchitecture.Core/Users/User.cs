@@ -4,10 +4,6 @@ using JosiArchitecture.Core.Shared.Model;
 
 namespace JosiArchitecture.Core.Users
 {
-    public record UserId(int Value)
-    {
-    }
-
     public class User : AggregateRoot
     {
         public User(string name)
@@ -16,7 +12,7 @@ namespace JosiArchitecture.Core.Users
             _profiles = new List<Profile>();
         }
 
-        public UserId? Id { get; private set; }
+        public int Id { get; private set; }
 
         public string Name { get; private set; }
 

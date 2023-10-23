@@ -18,6 +18,6 @@ public class SearchableUser
 
     public static SearchableUser FromUser(User user)
     {
-        return new SearchableUser(user.Id!.ToString(), user.Name);
+        return new SearchableUser(user.Id.ToString(), user.Name);
     }
 }

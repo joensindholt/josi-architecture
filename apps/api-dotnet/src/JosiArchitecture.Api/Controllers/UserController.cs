@@ -9,9 +9,6 @@ using JosiArchitecture.Core.Users.Commands.DeleteUser;
 
 namespace JosiArchitecture.Api.Controllers
 {
-    /// <summary>
-    /// Test comment
-    /// </summary>
     [Route("users")]
     public class UserController : Controller
     {

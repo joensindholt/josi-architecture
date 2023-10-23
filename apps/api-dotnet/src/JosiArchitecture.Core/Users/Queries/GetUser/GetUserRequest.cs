@@ -38,7 +38,7 @@ namespace JosiArchitecture.Core.Users.Queries.GetUser
             }
 
             var user = await _db.Users
-                .Where(l => l.Id == userId)
+                .Where(u => u.Id == new UserId(userId))
                 .AsNoTracking()
                 .FirstOrDefaultAsync(cancellationToken);
 

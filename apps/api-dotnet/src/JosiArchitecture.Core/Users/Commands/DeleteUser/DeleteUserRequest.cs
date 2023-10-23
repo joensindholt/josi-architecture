@@ -52,7 +52,7 @@ public class DeleteUserHandler : IRequestHandler<DeleteUserRequest, OneOf<Delete
 
         return new DeleteUserResponse
         {
-            Id = user.Id.ToString()
+            Id = user.Id!.ToString()
         };
     }
 }
